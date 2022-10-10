@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body{
+            background-color: lightblue;
+        }
+    </style>
+
+    <!--  JS es BLOQUEANTE ->   -->
+    <!-- <script src="script.js"></script> -->
+
+
+</head>
+<body>
+    
+ 
+
+
+    <h1> Hola mundo JS </h1>
+    <h2>
+        Ahora vamos a ver FLEX
+    </h2>
+
+    <button 
+        id="btnAnimate" 
+        style="background-color: blue;" 
+        onclick = "animaCuadrado()" > 
+        Anima cuadrado 
+    </button>
+    <button id="btnStop" disabled onclick="paraAnimacion()" >
+        Stop
+    </button>
+
+    <!--
+    <div class="grid" >
+        <div class="grid__column"> </div>
+        <div class="grid__column-big"> </div>
+    </div>
+    -->
+
+    <div id="grid">
+        <div class="column shrink">A</div>
+        <div class="column order2">B</div>
+        <div id="miCuadrado" class="column grow">C</div>
+        <div class="column grow2">D</div>
+    </div>
+
+
+
+    <!-- ZONA DE SCRIPTS -->
+    <script src="script.js"></script>
+</body>
+</html>

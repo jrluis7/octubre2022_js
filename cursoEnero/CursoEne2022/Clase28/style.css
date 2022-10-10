@@ -1,0 +1,15 @@
+:root{
+    --colorfav:"red";
+}
+
+
+body{
+    min-height: 100vh;
+    font-family: sans-serif;
+}
+
+.colores{
+    padding: 10px;
+    border:1px solid black;
+    margin:5px;
+}

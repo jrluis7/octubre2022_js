@@ -1,0 +1,19 @@
+
+#grid{
+    background-color: lightgoldenrodyellow;
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.cuadrado{
+    width: 100px;
+    height: 100px;
+    background-color: coral;
+    margin:10px;
+}
+
+.selected{
+    background-color: lightgreen;
+}
+
+

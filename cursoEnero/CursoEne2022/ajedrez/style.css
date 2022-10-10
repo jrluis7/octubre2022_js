@@ -1,0 +1,79 @@
+*{
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body{
+    margin:0;
+}
+#comidas_blancas,
+#comidas_negras{
+    display:flex;
+    height: 50px;
+}
+
+#comidas_blancas img,
+#comidas_negras img{
+    display:flex;
+    height: 40px;
+}
+
+#grid_tableros{
+    display:flex;
+    background-color: lightgoldenrodyellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+#tablero{
+    /* height: 500px; */
+
+}
+
+.casilla_numbers{
+    width: 50px;
+    display: flex;
+    flex-direction:column;
+}
+
+.casilla_letras{
+    display: flex;
+}
+
+.casilla_letras span{
+    height: 50px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:50px;
+}
+.casilla_numbers span{
+    height: 50px;
+    
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#tablero #casillas{
+    display:flex;
+    flex-wrap:wrap;
+    width:calc( 8 * 50px );
+    flex-direction: row-reverse;
+
+}
+
+#tablero #casillas .casilla{
+ 
+    height: 50px;
+    width: 50px;
+    background-color: #fff;
+
+}
+
+#tablero #casillas .casilla.negra{
+    background-color: #9b5900;
+}

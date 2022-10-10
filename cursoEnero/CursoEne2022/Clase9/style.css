@@ -1,0 +1,31 @@
+
+
+#tablas{
+    display:flex;
+    gap:2px;
+    flex-wrap: wrap;
+}
+
+.tabla{
+    border:1px solid black;
+    padding: 10px;
+}
+
+.tabla h2{
+    text-align:center;
+}
+.tabla>div{
+
+}
+
+#grid, #secundario{
+    display:flex;
+    gap:10px;
+    flex-wrap: wrap;
+
+}
+.cuadrado{
+    height:100px;
+    width:100px;
+    background-color:coral;
+}

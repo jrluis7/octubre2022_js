@@ -1,0 +1,20 @@
+*{
+    font-family: sans-serif;
+}
+
+#grid{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pokemon{
+    text-transform: capitalize;
+    width: 100px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin:7px;
+    height: 125px;
+}

@@ -1,0 +1,62 @@
+#modal{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color: #00000088;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    display:none;
+    animation:appear 0.5s;
+}
+.contenido{
+    background-color: #fff;
+    padding: 10px;
+    max-width: 600px ;
+    
+    position:relative;
+}
+.contenido.aparecer{
+    animation: fromTop 0.6s;
+}
+
+.contenido.desaparecer{
+    animation: toTop 0.6s;
+    animation-fill-mode: forwards;
+}
+
+
+#modal.activo{
+    display:flex;
+}
+
+@keyframes appear {
+    0%{
+        opacity:0;
+    }
+    100%{
+        opacity:1;
+    }
+}
+
+@keyframes fromTop {
+    0%{
+        top:-100%;
+    }
+
+    100%{
+        top:0;
+    }
+}
+
+@keyframes toTop {
+    0%{
+        top:0;
+    }
+    
+    100%{
+        top:-100%;
+    }
+}

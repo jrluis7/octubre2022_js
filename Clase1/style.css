@@ -1,0 +1,86 @@
+
+/* GENERALES */
+*{
+    box-sizing: border-box;
+}
+
+h1{
+    color:blue;
+}
+
+
+
+#grid{
+    background-color: lightgreen;
+    height: 300px;
+    display: flex; /* Sus hijos son flexibles */ 
+    /* Direccion principal */
+    flex-direction: row;
+    /* Comp. Dir. principal */
+
+    justify-content: space-around;
+    
+    /* Comp. Dir. secundaria */
+    align-items: center;
+
+    gap:5px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.column{
+    height: 100px;
+    width: 100px;
+    background-color: lightcoral;
+    border:1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* opacity: 0; */
+}
+
+.order2{
+    order: 2;
+}
+
+.grow{
+    flex-grow: 1;
+}
+
+.grow2{
+    flex-grow: 2;
+}
+
+.shrink{
+    flex-shrink: 0;
+}
+
+.animateAppear{
+    opacity: 0;
+    animation-name: appear;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+
+@keyframes appear {
+    0%{
+        opacity: 0.5;
+        transform: rotate(0deg);
+    }
+    20%{
+        opacity: 1;
+    }
+    80%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0.5;
+        transform: rotate(360deg);
+    }
+}
+
+
