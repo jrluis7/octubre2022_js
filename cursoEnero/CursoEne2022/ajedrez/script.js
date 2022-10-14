@@ -208,7 +208,7 @@ export class Juego {
         console.log(">>>CAMBIO JUGADOR")
         console.log(this.jugadorActivo)
         debugger
-        this.jugadorActivo.checkMovimientos(this.tablero);
+        this.jugadorActivo.checkMovimientos(this);
 
 
         this.pintaTurno();

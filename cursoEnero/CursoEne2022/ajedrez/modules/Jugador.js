@@ -99,9 +99,9 @@ export class Jugador {
 
     }
 
-    checkMovimientos(tablero) {
+    checkMovimientos(juego) {
         console.log(this);
-        this.fichas.forEach(cadaPieza => cadaPieza.checkMovimientos(tablero));
+        this.fichas.forEach(cadaPieza => cadaPieza.checkMovimientos(juego));
     }
 
     borrarPieza(id) {

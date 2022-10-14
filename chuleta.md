@@ -47,6 +47,8 @@ nodoBtnAnimate.style.color = "#ffffff";
 
 ### innerHTML
 Podemos crear nuevo contenido HTML como el conocemos
+
+NOTA: Necesita que la cadena HTML esté COMPLETA. Si detecta que no hay un cierre de una etiqueta, la cierra.
 ```html
   <div id="contenedorSaludo"> </div>
 ```
@@ -59,6 +61,23 @@ Podemos crear nuevo contenido HTML como el conocemos
 
   nodoContenedorSaludo.innerHTML = nodoContenedorSaludo.innerHTML + "NUEVO CONTENIDO"
 
+```
+### Recomendación
+```js
+// RECOMENDACIÓN: Crear una cadena de Texto con el HTML y después pintarlo
+
+// Construyo la cadena de texto que reprenta HTML
+let str_html = `<ul style="background-color: ${color} ">`;
+
+for (let i = 0; i < frutas.length; i++) {
+    str_html = str_html + `<li> ${frutas[i]} </li>`;
+    debugger
+}
+
+str_html += `</ul>`;
+
+// Voy a pintar
+nodoUl.innerHTML = str_html
 ```
 
 ## Crear eventos
@@ -74,3 +93,33 @@ function pintaWeb(){
     console.log( 'Clic' )
 }
 ```
+
+## FOR
+Trozo de código que se repite un NÚMERO DETERMINADO de veces.
+
+```js
+let str_string = " *"; // GLOBAL
+
+for (let i = 0; i < 10; i++) { /
+    console.log("Vuelta: ", i,);
+    // Se REPITE pero VARÍA i
+    str_string = str_string + " *";
+}// Se destruye la i
+
+```
+
+### CASO Especial: Recorrer una lista
+
+```js
+
+let frutas = ['manzana', 'pera', 'melón', 'melocotón', 'piña', 'sandía'];
+
+for (let i = 0; i < frutas.length; i++) {
+    console.log(i); // i va cambiando para CADA VUELTA
+    console.log(frutas[i]); // Voy a decidir USAR la i de un for para acceder a cada elemento de la lista
+}
+//
+```
+
+
+

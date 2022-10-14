@@ -129,7 +129,7 @@ export class Pieza {
     isCheck(rey) {
 
     }
-    checkMovimientos() {
+    checkMovimientos(juego) {
 
     }
 
@@ -596,8 +596,23 @@ export class Peon extends Pieza {
     }
 
 
-    checkMovimientos(tablero) {
-        this
+    checkMovimientos(juego) {
+        let c_antigua = this.posicion.letraToIndex();
+        let f_antigua = this.posicion.numeroToIndex();
+        /*
+            Checkear los movimientos hacia:
+            - Delante 1, (f, c-1)
+            - Delate 2 ( si es el primer movimiento ) ( f,c-2 )
+            - Comer en diagonal (f-1, c-1 ) (f-1,c+1)
+
+
+        */
+        if (this.equipo === BLANCAS) {
+
+
+        } if (this.equipo === NEGRAS) {
+        }
+        const clone = Object.assign(juego)
         debugger
     }
 
