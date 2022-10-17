@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+const canvas = createCanvas(200, 200) // set the height and width of the canvas
+const ctx = canvas.getContext('2d');
+const background = () => {
+   ctx.fillStyle = '##ff9505';
+   ctx.fillRect(0, 0, size, size); // fill the entire canvas
+};
+
+const encoder = new GIFEncoder(size, size);
+encoder.setDelay(500);
+encoder.start(); // starts the encoder
+
+const slice = size / 5; // this is the width of each rectangle
+// frame 1
+background();
+ctx.fillStyle = '#cc5803';
+ctx.fillRect(0, 0, slice, size);
+encoder.addFrame(ctx);
+// frame 2
+background();
+ctx.fillStyle = '#e2711d';
+ctx.fillRect(slice, 0, slice, size);
+encoder.addFrame(ctx);
+// frame 3
+background();
+ctx.fillStyle = '#fc7b03';
+ctx.fillRect(slice * 2, 0, slice, size);
+encoder.addFrame(ctx);
+// frame 4
+background();
+ctx.fillStyle = '#ffb627';
+ctx.fillRect(slice * 3, 0, slice, size);
+encoder.addFrame(ctx);
+// frame 5
+background();
+ctx.fillStyle = '#ffc971';
+ctx.fillRect(slice * 4, 0, slice, size);
+encoder.addFrame(ctx);
+// end the encoding
+encoder.finish();
+
+const buffer = encoder.out.getData();
+writeFile('example.gif', buffer, error => {
+   error ? console.log(error) : null;
+});
+    </script>
+
+
+</body>
+</html>

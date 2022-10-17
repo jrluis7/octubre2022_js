@@ -1,0 +1,31 @@
+{
+  "name": "pixel_to_web",
+  "version": "1.0.0",
+  "description": "Pixel art to web resources",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jrluis7/octubre2022_js.git"
+  },
+  "author": "Luis Jiménez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jrluis7/octubre2022_js/issues"
+  },
+  "homepage": "https://github.com/jrluis7/octubre2022_js#readme",
+  "dependencies": {
+    "canvas": "^2.10.1",
+    "gif-encoder-2": "^1.0.5",
+    "parcel": "^2.7.0"
+  },
+  "devDependencies": {
+    "buffer": "^6.0.3",
+    "events": "^3.3.0",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0"
+  }
+}
