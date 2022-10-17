@@ -12,15 +12,17 @@ function query(selector) {
     return d.querySelector(selector);
 }
 
-let nodoColor       = query('#color');
-let grid            = query('#grid');
-let entradaAncho    = query('#ancho');
-let entradaAlto     = query('#alto');
-let btnCambiarTam   = query('#cambiarTamano');
-let btnExport       = query('#export');
-let btnExport_svg   = query('#export_svg');
+let nodoColor = query('#color');
+let grid = query('#grid');
+let entradaAncho = query('#ancho');
+let entradaAlto = query('#alto');
+let btnCambiarTam = query('#cambiarTamano');
+let btnExport = query('#export');
+let btnExport_svg = query('#export_svg');
+let btnEraser = query('#eraser');
+let btnPaint = query('#paint');
 
-const grid_element = new Grid(20, 30, grid);
+const grid_element = new Grid({ x: 20, y: 30, element: grid });
 
 btnCambiarTam.addEventListener('click', function () {
     grid_element.setSize(entradaAncho.valueAsNumber, entradaAlto.valueAsNumber);
@@ -29,16 +31,23 @@ nodoColor.addEventListener('change', function () {
     grid_element.setColor(this.value);
 })
 
-btnExport.addEventListener( 'click' , function () {
+btnExport.addEventListener('click', function () {
     preview.innerHTML = "";
     preview.appendChild(grid_element.exportToCss())
 })
-btnExport_svg.addEventListener( 'click' , function () {
+
+btnExport_svg.addEventListener('click', function () {
     svgOne.innerHTML = "";
     svgOne.appendChild(grid_element.exportToSVG())
 })
 
-color.addEventListener
+btnEraser.addEventListener('click', function () {
+    grid_element.switchEraser();
+})
+
+btnPaint.addEventListener('click', function () {
+    grid_element.switchPaint();
+})
 
 let testString1 = '0px none rgb(98, 98, 98)'
 let testString2 = 'rgba(0, 0, 0, 0.75) 10px 10px 5px 0px'
@@ -62,4 +71,4 @@ function downloadSVGAsText() {
     a.download = 'download.svg';
     a.href = 'data:image/svg+xml;base64,' + base64doc;
     a.dispatchEvent(e);
-  }
+}

@@ -1,9 +1,10 @@
-
+import Square from "./Square.js";
 
 export default class Grid {
     tablero = [];
     color = "red";
-    constructor(x, y, element, color) {
+    tool = "";
+    constructor({ x, y, element, color }) {
         this.size_num = 1;
         this.size = "em";
         this.x = x;
@@ -22,9 +23,21 @@ export default class Grid {
             this.isPainting = false;
         }
 
-        window.addEventListener( 'mousedown' , mouseDown)
-        window.addEventListener( 'mouseup' , mouseUp )
+        const key_controls = (ev) => {
+            if (ev.code === "KeyB") {
+                this.tool = 'ERASER';
+            }
+        }
+        const key_controls_up = (ev) => {
+            if (ev.code === "KeyB") {
+                this.tool = '';
+            }
+        }
 
+        window.addEventListener('mousedown', mouseDown)
+        window.addEventListener('mouseup', mouseUp)
+        window.addEventListener('keydown', key_controls)
+        window.addEventListener('keyup', key_controls_up)
 
         console.log(x, y);
         this.tablero = new Array(this.y);
@@ -62,6 +75,13 @@ export default class Grid {
         this.color = color;
     }
 
+    switchEraser() {
+        this.tool = 'ERASER';
+    }
+    switchPaint() {
+        this.tool = '';
+    }
+
     setSize(x, y) {
         debugger
         this.x = x;
@@ -79,98 +99,51 @@ export default class Grid {
         this.fillTablero();
     }
 
-    exportToCss(){
+    exportToCss() {
         let str = '';
-        for( let y = 0; y < this.y; y++ ){
-            for( let x = 0; x<this.x; x++){
+        for (let y = 0; y < this.y; y++) {
+            for (let x = 0; x < this.x; x++) {
 
-                if( this.tablero[y][x]!== "" ){
-                    str += `${(x+1)*this.size_num}${this.size} ${(y+1)*this.size_num}${this.size} ${this.tablero[y][x]},`
+                if (this.tablero[y][x] !== "") {
+                    str += `${(x + 1) * this.size_num}${this.size} ${(y + 1) * this.size_num}${this.size} ${this.tablero[y][x]},`
                 }
 
 
             }
-        }   
+        }
 
-        str=str.slice(0, -1);
+        str = str.slice(0, -1);
 
         let div = document.createElement('div');
         div.style.cssText = `
             height:${this.size_num}${this.size};
             width:${this.size_num}${this.size};
             `;
-           div.style.boxShadow = str;
+        div.style.boxShadow = str;
         debugger
         return div
     }
 
-    exportToSVG(){
+    exportToSVG() {
         const svgns = "http://www.w3.org/2000/svg"
         let g = document.createElementNS(svgns, 'g');
         let size = 5;
-        for( let y = 0; y < this.y; y++ ){
-            for( let x = 0; x<this.x; x++){
-                if( this.tablero[y][x]!== "" ){
+        for (let y = 0; y < this.y; y++) {
+            for (let x = 0; x < this.x; x++) {
+                if (this.tablero[y][x] !== "") {
                     let rect = document.createElementNS(svgns, 'rect');
-                    rect.setAttribute('x', (x+1)*size);
-                    rect.setAttribute('y', (y+1)*size);
+                    rect.setAttribute('x', (x + 1) * size);
+                    rect.setAttribute('y', (y + 1) * size);
                     rect.setAttribute('height', size);
                     rect.setAttribute('width', size);
                     rect.setAttribute('fill', this.tablero[y][x]);
-                    g.appendChild( rect );
+                    g.appendChild(rect);
                 }
             }
         }
         document.getElementById('svgOne').appendChild(g);
-                
+
     }
 
 }
 
-class Square {
-    nodo;
-    grid;
-    x; y;
-    constructor(grid, x, y) {
-        this.grid = grid;
-        this.x = x;
-        this.y = y;
-        const click_ = () => {
-            console.log('Ey, click!', this);
-            console.log(this.seleccionado)
-            let color = (!this.seleccionado ? this.grid.color : '');
-            this.paint( color);
-
-
-        }
-        const mouse_move = () => {
-            console.log('Ey, click!', this);
-            console.log(this.seleccionado)
-           this.paint(this.grid.color);
-            console.log(this.grid)
-        }
-        this.seleccionado = false;
-        let span = document.createElement('span')
-        span.classList.add('square');
-
-        span.addEventListener('click', click_);
-        span.addEventListener('mousemove', mouse_move);
-        this.nodo = span;
-
-    }
-    get nodo() {
-        return this.nodo;
-    }
-
-
-    paint( color ){
-        if(this.grid.isPainting){
-
-            this.nodo.style.cssText = `background-color:${color}`;
-            this.seleccionado = !this.seleccionado;
-            this.grid.markSquare(color, this.y, this.x);
-        }
-    }
-
-
-}

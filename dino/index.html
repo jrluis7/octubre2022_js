@@ -11,48 +11,54 @@
 
 <body>
     <!-- <div id="dinosaur"></div> -->
-<!-- </body> -->
 
 
+    <div id="grid_entradas">
+        <div>
+            <p>
+                Ancho :
+                <input id="ancho" type="number" value="10"> Alto:
+                <input id="alto" type="number" value="12"><button id="cambiarTamano">Cambiar</button>
+            </p>
+        </div>
 
-<div id="grid_entradas">
+        <div>
+            <button id="eraser"> Borrar </button>
+            <button id="paint"> Pintar </button>
+        </div>
+
+        <input type="color" id="color">
+        <input type="text" id="color">
+    </div>
+    <!-- <div id="linea">
+
+    </div> -->
+
+    <div class="content">
+        <div id="grid">
+
+        </div>
+    </div>
     <div>
-        <p>
-            Ancho : <input id="ancho" type="number" value="10"> Alto: <input id="alto" type="number" value="12"><button
-                id="cambiarTamano">Cambiar</button>
-        </p>
+        <button id="export"> Exportar </button>
     </div>
 
-    <input type="color" id="color">
-    <input type="number" id="color">
-</div>
-<div id="linea">
 
-</div>
-
-<div class="content">
-    <div id="grid">
+    <div id="preview">
 
     </div>
-</div>
-<div>
-    <button id="export"> Exportar </button>
-</div>
+    <button id="export_svg"> Exportar SVG </button>
+    <button id="download_svg" onclick="downloadSVGAsText()"> Download SVG </button>
 
+    <div>
+        <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            version="1.1" id="svgOne">
 
-<div id="preview">
+        </svg>
 
-</div>
-<button id="export_svg"> Exportar SVG </button>
-<button id="download_svg" onclick="downloadSVGAsText()"> Download SVG </button>
+    </div>
 
-<div>
-    <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svgOne">
-
-    </svg>
-
-</div>
-
-<script src="app.js" type="module"></script>
+    <script src="app.js" type="module"></script>
+</body>
 
 </html>
