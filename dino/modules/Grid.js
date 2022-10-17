@@ -52,15 +52,37 @@ export default class Grid {
         this.fillTablero();
     }
 
+    static newTablero( tablero, element ) {
+
+        let h = tablero.length;
+        let w = tablero[0].length;
+
+        let g = new Grid( {x:w,y:h,element} );
+
+        g.tablero = tablero;
+        debugger
+        for (let f = 0; f<h; f++){
+            for( let c = 0; c<w; c++){
+                
+                g.casillasDOM[f][c].nodo.style.backgroundColor = tablero[f][c]
+                // debugger
+            }
+        }
+        return g;
+
+    }
+
     fillTablero() {
 
         for (let f = 0; f < this.casillasDOM.length; f++) {
             for (let c = 0; c < this.x; c++) {
                 let square = new Square(this, f, c);
                 this.element.appendChild(square.nodo);
+                this.casillasDOM[f][c] = square;
             }
         }
     }
+
     setGridStyle() {
         this.element.style.cssText = `
             grid-template-columns: repeat(${this.x}, 1em);
@@ -83,7 +105,6 @@ export default class Grid {
     }
 
     setSize(x, y) {
-        debugger
         this.x = x;
         this.y = y;
         this.element.innerHTML = "";
@@ -127,13 +148,14 @@ export default class Grid {
     exportToSVG() {
         const svgns = "http://www.w3.org/2000/svg"
         let g = document.createElementNS(svgns, 'g');
-        let size = 5;
+        let size = 10;
         for (let y = 0; y < this.y; y++) {
             for (let x = 0; x < this.x; x++) {
                 if (this.tablero[y][x] !== "") {
                     let rect = document.createElementNS(svgns, 'rect');
                     rect.setAttribute('x', (x + 1) * size);
                     rect.setAttribute('y', (y + 1) * size);
+                    rect.setAttribute('shape-rendering','crispedges');
                     rect.setAttribute('height', size);
                     rect.setAttribute('width', size);
                     rect.setAttribute('fill', this.tablero[y][x]);
