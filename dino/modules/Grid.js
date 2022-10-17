@@ -104,6 +104,27 @@ export default class Grid {
         return div
     }
 
+    exportToSVG(){
+        const svgns = "http://www.w3.org/2000/svg"
+        let g = document.createElementNS(svgns, 'g');
+        let size = 5;
+        for( let y = 0; y < this.y; y++ ){
+            for( let x = 0; x<this.x; x++){
+                if( this.tablero[y][x]!== "" ){
+                    let rect = document.createElementNS(svgns, 'rect');
+                    rect.setAttribute('x', (x+1)*size);
+                    rect.setAttribute('y', (y+1)*size);
+                    rect.setAttribute('height', size);
+                    rect.setAttribute('width', size);
+                    rect.setAttribute('fill', this.tablero[y][x]);
+                    g.appendChild( rect );
+                }
+            }
+        }
+        document.getElementById('svgOne').appendChild(g);
+                
+    }
+
 }
 
 class Square {
