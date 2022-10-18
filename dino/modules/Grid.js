@@ -1,9 +1,11 @@
 import Square from "./Square.js";
+import History from "./History.js";
 
 export default class Grid {
     tablero = [];
     color = "red";
     tool = "";
+    history = []
     constructor({ x, y, element, color }) {
         this.size_num = 1;
         this.size = "em";
@@ -11,7 +13,7 @@ export default class Grid {
         this.y = y;
         this.element = element;
         this.color = color ? color : "black";
-
+        this.history = new History();
         this.isPainting = false;
 
         const mouseDown = () => {
@@ -26,6 +28,10 @@ export default class Grid {
         const key_controls = (ev) => {
             if (ev.code === "KeyB") {
                 this.tool = 'ERASER';
+            }
+            console.log(ev)
+            if (ev.code === "KeyZ" && ev.ctrlKey) {
+                this.popHistory();
             }
         }
         const key_controls_up = (ev) => {
@@ -50,20 +56,21 @@ export default class Grid {
         }
         this.setGridStyle();
         this.fillTablero();
+        this.history.push(this.tablero)
     }
 
-    static newTablero( tablero, element ) {
+    static newTablero(tablero, element) {
 
         let h = tablero.length;
+        debugger
         let w = tablero[0].length;
-
-        let g = new Grid( {x:w,y:h,element} );
+        let g = new Grid({ x: w, y: h, element });
 
         g.tablero = tablero;
         debugger
-        for (let f = 0; f<h; f++){
-            for( let c = 0; c<w; c++){
-                
+        for (let f = 0; f < h; f++) {
+            for (let c = 0; c < w; c++) {
+
                 g.casillasDOM[f][c].nodo.style.backgroundColor = tablero[f][c]
                 // debugger
             }
@@ -91,10 +98,16 @@ export default class Grid {
 
     markSquare(color, x, y) {
         this.tablero[y][x] = color;
+        this.history.push(this.tablero);
     }
 
     setColor(color) {
         this.color = color;
+    }
+
+    popHistory() {
+        const tablero = this.history.pop()
+        Grid.newTablero(tablero, this.element);
     }
 
     switchEraser() {
@@ -155,7 +168,7 @@ export default class Grid {
                     let rect = document.createElementNS(svgns, 'rect');
                     rect.setAttribute('x', (x + 1) * size);
                     rect.setAttribute('y', (y + 1) * size);
-                    rect.setAttribute('shape-rendering','crispedges');
+                    rect.setAttribute('shape-rendering', 'crispedges');
                     rect.setAttribute('height', size);
                     rect.setAttribute('width', size);
                     rect.setAttribute('fill', this.tablero[y][x]);
