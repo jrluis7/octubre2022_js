@@ -688,7 +688,7 @@ let btnPaint = query('#paint');
 // const grid_element = new Grid({ x: 20, y: 30, element: grid });
 
 const grid_element = Grid.newTablero(t, grid);
-grid_element.history.push(grid_element.tablero)
+// grid_element.history.push([...grid_element.tablero])
 btnCambiarTam.addEventListener('click', function () {
     grid_element.setSize(entradaAncho.valueAsNumber, entradaAlto.valueAsNumber);
 })

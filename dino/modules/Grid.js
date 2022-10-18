@@ -56,7 +56,7 @@ export default class Grid {
         }
         this.setGridStyle();
         this.fillTablero();
-        this.history.push(this.tablero)
+        // this.history.push([...this.tablero])
     }
 
     static newTablero(tablero, element) {
@@ -98,7 +98,12 @@ export default class Grid {
 
     markSquare(color, x, y) {
         this.tablero[y][x] = color;
-        this.history.push(this.tablero);
+        // Copia el array
+        const t = this.tablero.map( e=>{
+            return e.map( i=>i );
+        } );
+        debugger
+        this.history.push(t);
     }
 
     setColor(color) {
@@ -106,8 +111,9 @@ export default class Grid {
     }
 
     popHistory() {
-        const tablero = this.history.pop()
-        Grid.newTablero(tablero, this.element);
+        const tablero = this.history.pop();
+        this.element.innerHTML = "";
+        this.tablero = Grid.newTablero(tablero, this.element);
     }
 
     switchEraser() {

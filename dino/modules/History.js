@@ -10,9 +10,9 @@ export default class History {
     }
 
     push(item) {
+        debugger
         this.data = [...this.data, item]
         this.length++;
-        debugger
         return this.length;
 
     }
