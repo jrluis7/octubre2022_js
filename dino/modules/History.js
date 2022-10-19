@@ -32,7 +32,7 @@ export default class History {
      * @returns boolean - True si el item a introducir es el último introdoucido
      */
     #checkItemIsLast(item) {
-        if (JSON.stringify(item) === JSON.stringify(this.data[this.data.length - 1])) return true;
+        if (JSON.stringify(item) === JSON.stringify(this.data[this.counter])) return true;
         return false;
     }
 
