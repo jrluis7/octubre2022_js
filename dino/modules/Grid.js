@@ -16,10 +16,10 @@ export default class Grid {
         this.history = new History();
         this.isPainting = false;
 
-        const mouseDown = () => {
+        const mouseDown = (ev) => {
             console.log('Ey, click!', this);
-            console.log(this.seleccionado)
-            this.isPainting = true;
+            console.log(ev)
+            if (ev.which === 1) this.isPainting = true;
         }
         const mouseUp = () => {
             this.isPainting = false;
@@ -29,8 +29,8 @@ export default class Grid {
             if (ev.code === "KeyB") {
                 this.tool = 'ERASER';
             }
-            console.log(ev)
             if (ev.code === "KeyZ" && ev.ctrlKey) {
+                console.log("Ctrl ZZZZZ")
                 this.popHistory();
             }
         }
@@ -42,6 +42,7 @@ export default class Grid {
 
         window.addEventListener('mousedown', mouseDown)
         window.addEventListener('mouseup', mouseUp)
+        // window.removeEventListener('keydown', key_controls)
         window.addEventListener('keydown', key_controls)
         window.addEventListener('keyup', key_controls_up)
 
@@ -62,12 +63,12 @@ export default class Grid {
     static newTablero(tablero, element) {
 
         let h = tablero.length;
-        debugger
+
         let w = tablero[0].length;
         let g = new Grid({ x: w, y: h, element });
 
         g.tablero = tablero;
-        debugger
+
         for (let f = 0; f < h; f++) {
             for (let c = 0; c < w; c++) {
 
@@ -77,6 +78,20 @@ export default class Grid {
         }
         return g;
 
+    }
+
+    paintTablero(tablero) {
+        let h = tablero.length;
+
+        let w = tablero[0].length;
+        this.tablero = tablero;
+        for (let f = 0; f < h; f++) {
+            for (let c = 0; c < w; c++) {
+
+                this.casillasDOM[f][c].nodo.style.backgroundColor = tablero[f][c]
+                // debugger
+            }
+        }
     }
 
     fillTablero() {
@@ -99,10 +114,10 @@ export default class Grid {
     markSquare(color, x, y) {
         this.tablero[y][x] = color;
         // Copia el array
-        const t = this.tablero.map( e=>{
-            return e.map( i=>i );
-        } );
-        debugger
+        const t = this.tablero.map(e => {
+            return e.map(i => i);
+        });
+        // debugger
         this.history.push(t);
     }
 
@@ -111,9 +126,9 @@ export default class Grid {
     }
 
     popHistory() {
-        const tablero = this.history.pop();
-        this.element.innerHTML = "";
-        this.tablero = Grid.newTablero(tablero, this.element);
+        const tablero = this.history.back();
+        // this.element.innerHTML = "";
+        this.paintTablero(tablero);
     }
 
     switchEraser() {

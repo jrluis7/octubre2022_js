@@ -7,18 +7,15 @@ export default class Square {
         this.x = x;
         this.y = y;
         const click_ = () => {
-            console.log('Ey, click!', this);
-            console.log(this.seleccionado)
+
             let color = (!this.seleccionado ? this.grid.color : '');
             this.paint(color);
 
 
         }
         const mouse_move = () => {
-            console.log('Ey, click!', this);
-            console.log(this.seleccionado)
             this.paint(this.grid.color);
-            console.log(this.grid)
+
         }
         this.seleccionado = false;
         let span = document.createElement('span')
