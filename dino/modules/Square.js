@@ -1,3 +1,5 @@
+import { isMouseDown } from './../utils/utils.js'
+
 export default class Square {
     nodo;
     grid;
@@ -9,20 +11,21 @@ export default class Square {
         const click_ = () => {
 
             let color = (!this.seleccionado ? this.grid.color : '');
-            this.paint(color);
+            this.paint(color, ev);
 
 
         }
-        const mouse_move = () => {
-            this.paint(this.grid.color);
+        const mouse_move = (ev) => {
+            console.log(ev)
+            this.paint(this.grid.color, ev);
 
         }
         this.seleccionado = false;
         let span = document.createElement('span')
         span.classList.add('square');
 
-        span.addEventListener('click', click_);
-        span.addEventListener('mousemove', mouse_move);
+        span.addEventListener('mousedown', mouse_move);
+        span.addEventListener('mouseenter', mouse_move);
         this.nodo = span;
 
     }
@@ -31,8 +34,10 @@ export default class Square {
     }
 
 
-    paint(color) {
-        if (this.grid.isPainting) {
+    paint(color, ev) {
+        console.log(ev)
+        console.log("->>", this)
+        if (this.grid.isPainting || isMouseDown(ev)) {
             if (this.grid.tool === 'ERASER') {
 
                 this.nodo.style.cssText = `background-color:white`;

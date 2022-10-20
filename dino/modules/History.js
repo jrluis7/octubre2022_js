@@ -15,13 +15,14 @@ export default class History {
 
         if (this.#checkItemIsLast(item)) return;
         const old_data = this.data.slice(0, this.counter + 1);
-        debugger
+        // debugger
         this.data = [...old_data, item]
-        debugger
+        // debugger
+        console.log('Elemento cogido', this.counter);
+        console.log(this.data);
 
         this.counter++;
-        console.log(this.counter);
-        console.log(this.data);
+        console.log('Counter: ', this.counter)
         return this.length;
 
     }
@@ -39,12 +40,14 @@ export default class History {
     back() {
         // this.data = this.data.filter((v, i) => i != this.data.length - 1);
         // ey
-        const tablero = this.data.find((v, i) => (i === (this.counter - 1)))
-        debugger
+
+        const penultimo = this.counter - 1;
+        const tablero = this.data.find((v, i) => (i === (penultimo)))
+        // debugger
         this.counter--;
 
         console.log(this.data);
-        console.log(this.counter)
+        console.log('Counter ', this.counter);
 
         // debugger
         return tablero;

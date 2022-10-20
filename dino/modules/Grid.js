@@ -18,7 +18,7 @@ export default class Grid {
 
         const mouseDown = (ev) => {
             console.log('Ey, click!', this);
-            console.log(ev)
+            console.log('Down ->', ev)
             if (ev.which === 1) this.isPainting = true;
         }
         const mouseUp = () => {
@@ -175,7 +175,7 @@ export default class Grid {
             width:${this.size_num}${this.size};
             `;
         div.style.boxShadow = str;
-        debugger
+        // debugger
         return div
     }
 

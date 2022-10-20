@@ -18,7 +18,8 @@ Usar letras minúsculas
 
 ## Seleccionar elementos del DOM ( Web )
 
-### Seleccionar un elemento concreto
+### Seleccionar un elemento concreto  
+NOTA: Selecciona el primer elemento que CUMPLE el selector
 ```html
 <button id="btnAnimate"> Anima cuadrado </button>
 ```
@@ -28,6 +29,45 @@ let nodoBtnAnimate = document.querySelector( '#btnAnimate' );
 
 console.log( nodoBtnAnimate );
 ```
+### Seleccionar un GRUPO de elementos
+
+```html
+  <div id="grid">
+        <div class="cuadrado"></div>
+        <div class="cuadrado"></div>
+        <div class="cuadrado"></div>
+        <div class="cuadrado"></div>
+        <div class="cuadrado"></div>
+    </div>
+```
+
+```js
+// LISTA de nodos HTML
+ let listaCuadrados = document.querySelectorAll('.cuadrado');
+    console.log(listaCuadrados);
+```
+
+#### Ejemplo: Cambiar el color de todos los elementos
+
+```js
+let listaCuadrados = document.querySelectorAll('.cuadrado');
+    console.log(listaCuadrados);
+
+
+    // Las listas NO TIENEN una propiedad 'style'
+    //listaCuadrados.style.backgroundColor = 'lightgreen';
+
+    // Nodo HTML
+    // Acceder a todos elementos, uno por uno
+    for (let i = 0; i < listaCuadrados.length; i++) {
+
+        listaCuadrados[i].style.backgroundColor = 'purple';
+    }
+```
+
+
+
+
 
 
 ## Cambiar propiedades de un NODO HTML

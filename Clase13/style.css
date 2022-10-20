@@ -1,0 +1,10 @@
+#grid {
+    display: flex;
+    gap: 10px;
+}
+
+.cuadrado {
+    width: 100px;
+    aspect-ratio: 1;
+    background-color: coral;
+}
