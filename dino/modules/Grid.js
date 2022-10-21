@@ -17,8 +17,8 @@ export default class Grid {
         this.isPainting = false;
 
         const mouseDown = (ev) => {
-            console.log('Ey, click!', this);
-            console.log('Down ->', ev)
+            // console.log('Ey, click!', this);
+            // console.log('Down ->', ev)
             if (ev.which === 1) this.isPainting = true;
         }
         const mouseUp = () => {
@@ -112,6 +112,10 @@ export default class Grid {
     }
 
     markSquare(color, x, y) {
+        if (this.tablero[y][x] === color) {
+            return
+        }
+
         this.tablero[y][x] = color;
         // Copia el array
         const t = this.tablero.map(e => {

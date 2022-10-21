@@ -15,7 +15,7 @@ export default class History {
 
         if (this.#checkItemIsLast(item)) return;
         const old_data = this.data.slice(0, this.counter + 1);
-        // debugger
+        debugger
         this.data = [...old_data, item]
         // debugger
         console.log('Elemento cogido', this.counter);
@@ -33,6 +33,10 @@ export default class History {
      * @returns boolean - True si el item a introducir es el último introdoucido
      */
     #checkItemIsLast(item) {
+        console.group('CheckList')
+        console.log('CheckItemIsLast', this.counter, item);
+        console.log('ChecItemIsLAst', (JSON.stringify(item) === JSON.stringify(this.data[this.counter])))
+        console.groupEnd();
         if (JSON.stringify(item) === JSON.stringify(this.data[this.counter])) return true;
         return false;
     }

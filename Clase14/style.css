@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+#grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#grid .cuadrado {
+    width: 100px;
+    aspect-ratio: 1/2;
+    background-color: tomato;
+}
+
+.cuadrado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+#grid div.morado {
+    background-color: purple;
+}

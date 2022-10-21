@@ -16,7 +16,7 @@ export default class Square {
 
         }
         const mouse_move = (ev) => {
-            console.log(ev)
+            // console.log(ev)
             this.paint(this.grid.color, ev);
 
         }
@@ -35,8 +35,8 @@ export default class Square {
 
 
     paint(color, ev) {
-        console.log(ev)
-        console.log("->>", this)
+        // console.log(ev)
+        // console.log("->>", this)
         if (this.grid.isPainting || isMouseDown(ev)) {
             if (this.grid.tool === 'ERASER') {
 

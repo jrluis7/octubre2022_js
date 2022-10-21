@@ -134,6 +134,17 @@ function pintaWeb(){
 }
 ```
 
+### Atributo HTML con JS
+```html
+<button id="btnPaint"> Pintar </button>
+```
+```js
+let nodoBtn = document.querySelector( '#btnPaint' );
+nodoBtn.onclick = function(){
+    console.log( 'Clic' );
+}
+```
+
 ## FOR
 Trozo de código que se repite un NÚMERO DETERMINADO de veces.
 
