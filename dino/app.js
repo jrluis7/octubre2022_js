@@ -685,9 +685,9 @@ let btnExport_svg = query('#export_svg');
 let btnEraser = query('#eraser');
 let btnPaint = query('#paint');
 
-// const grid_element = new Grid({ x: 20, y: 30, element: grid });
+const grid_element = new Grid({ x: 2, y: 3, element: grid });
 
-const grid_element = Grid.newTablero(t, grid);
+// const grid_element = Grid.newTablero(t, grid);
 // grid_element.history.push([...grid_element.tablero])
 btnCambiarTam.addEventListener('click', function () {
     grid_element.setSize(entradaAncho.valueAsNumber, entradaAlto.valueAsNumber);

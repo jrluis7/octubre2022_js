@@ -1,0 +1,11 @@
+#gridTablas {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tabla {
+    border: 1px solid black;
+    padding: 20px;
+}

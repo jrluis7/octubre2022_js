@@ -118,10 +118,12 @@ export default class Grid {
 
         this.tablero[y][x] = color;
         // Copia el array
+        this.history.data;
+
         const t = this.tablero.map(e => {
             return e.map(i => i);
         });
-        // debugger
+        console.log('Mismo tablero', t === this.history.data)
         this.history.push(t);
     }
 

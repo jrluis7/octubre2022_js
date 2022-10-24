@@ -17,7 +17,7 @@ Las variables las vamos a definir siempre con LET
 Usar letras minúsculas
 
 ## Seleccionar elementos del DOM ( Web )
-
+NOTA: Hago búsquedas  sobre Document-> Toda la web. Pero yp ùedo cambiar document por CUALQUIER NODO HTML para hacer búsquedas focalizadas en una zona del DOM
 ### Seleccionar un elemento concreto  
 NOTA: Selecciona el primer elemento que CUMPLE el selector
 ```html

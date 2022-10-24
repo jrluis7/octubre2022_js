@@ -11,16 +11,15 @@ export default class History {
         }
     }
 
-    push(item) {
+    async push(item) {
 
-        if (this.#checkItemIsLast(item)) return;
-        const old_data = this.data.slice(0, this.counter + 1);
-        debugger
+        if (await this.#checkItemIsLast(item)) return;
+        const old_data = this.data.slice(0, this.counter + 1)
         this.data = [...old_data, item]
-        // debugger
+        console.group('Push Item');
         console.log('Elemento cogido', this.counter);
         console.log(this.data);
-
+        console.groupEnd();
         this.counter++;
         console.log('Counter: ', this.counter)
         return this.length;
@@ -34,8 +33,12 @@ export default class History {
      */
     #checkItemIsLast(item) {
         console.group('CheckList')
+        console.log('Data', this.data)
         console.log('CheckItemIsLast', this.counter, item);
         console.log('ChecItemIsLAst', (JSON.stringify(item) === JSON.stringify(this.data[this.counter])))
+        console.log('Counter:', this.counter)
+        console.log("item que entra", JSON.stringify(item));
+        console.log("Elemento apuntado por counter", JSON.stringify(this.data[this.counter]));
         console.groupEnd();
         if (JSON.stringify(item) === JSON.stringify(this.data[this.counter])) return true;
         return false;
@@ -46,15 +49,17 @@ export default class History {
         // ey
 
         const penultimo = this.counter - 1;
-        const tablero = this.data.find((v, i) => (i === (penultimo)))
-        // debugger
-        this.counter--;
+        const tablero = this.data.find((v, i) => (i === (penultimo)));
 
+        const t = tablero.map(e => {
+            return e.map(i => i);
+        });
+        this.counter--;
+        console.group('Back');
         console.log(this.data);
         console.log('Counter ', this.counter);
-
-        // debugger
-        return tablero;
+        console.groupEnd('Back');
+        return t;
     }
 
 }

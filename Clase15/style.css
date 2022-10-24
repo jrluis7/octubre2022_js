@@ -1,0 +1,54 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+#grid,
+#secundario {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.cuadrado {
+    background-color: rgb(206, 59, 232);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 100px;
+    aspect-ratio: 1/2;
+}
+
+#grid .cuadrado {
+    background-color: tomato;
+}
+
+
+
+#grid div.morado {
+    background-color: purple;
+}
+
+
+#grid .cuadrado.activo {
+    background-color: lightblue;
+    animation: animacion 1s infinite;
+}
+
+@keyframes animacion {
+    0% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}
