@@ -1,6 +1,8 @@
 import Square from "./Square.js";
 import History from "./History.js";
 
+import {cloneTablero} from "../utils/utils.js"
+
 export default class Grid {
     tablero = [];
     color = "red";
@@ -23,21 +25,31 @@ export default class Grid {
         }
         const mouseUp = () => {
             this.isPainting = false;
+            
+            const t = cloneTablero( this.tablero );
+            this.history.push(t);
         }
 
         const key_controls = (ev) => {
             if (ev.code === "KeyB") {
                 this.tool = 'ERASER';
             }
-            if (ev.code === "KeyZ" && ev.ctrlKey) {
-                console.log("Ctrl ZZZZZ")
+            if (ev.code === "KeyZ" && ev.ctrlKey  && !ev.shiftKey) {
                 this.popHistory();
             }
+
+            if (ev.code === "KeyZ" && ev.ctrlKey  && ev.shiftKey) {
+                this.undoPopHistory();
+            }
         }
+        
         const key_controls_up = (ev) => {
             if (ev.code === "KeyB") {
                 this.tool = '';
             }
+
+
+    
         }
 
         window.addEventListener('mousedown', mouseDown)
@@ -57,7 +69,9 @@ export default class Grid {
         }
         this.setGridStyle();
         this.fillTablero();
-        // this.history.push([...this.tablero])
+
+        const t = cloneTablero( this.tablero );
+        this.history.push(t)
     }
 
     static newTablero(tablero, element) {
@@ -76,6 +90,9 @@ export default class Grid {
                 // debugger
             }
         }
+        const t = cloneTablero( g.tablero );
+        g.history.push(t)
+
         return g;
 
     }
@@ -119,12 +136,9 @@ export default class Grid {
         this.tablero[y][x] = color;
         // Copia el array
         this.history.data;
-
-        const t = this.tablero.map(e => {
-            return e.map(i => i);
-        });
+        // const t = cloneTablero( this.tablero );
         console.log('Mismo tablero', t === this.history.data)
-        this.history.push(t);
+        // this.history.push(t);
     }
 
     setColor(color) {
@@ -132,9 +146,26 @@ export default class Grid {
     }
 
     popHistory() {
-        const tablero = this.history.back();
-        // this.element.innerHTML = "";
-        this.paintTablero(tablero);
+        try{
+            const tablero = this.history.back();
+            // this.element.innerHTML = "";
+            this.paintTablero(tablero);
+
+        }catch( e ){
+
+        }
+    }
+
+    undoPopHistory(){
+        try{
+            const tablero = this.history.undo_back();
+            // this.element.innerHTML = "";
+            // debugger
+            this.paintTablero(tablero);
+
+        }catch( e ){
+
+        }
     }
 
     switchEraser() {

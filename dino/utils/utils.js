@@ -8,4 +8,14 @@ function isMouseDown(ev) {
     return false;
 }
 
-export { isMouseDown };
+function cloneTablero( tablero ){
+    const t = tablero.map(e => {
+        return e.map(i => i);
+    });
+    return t;
+}
+
+export { 
+    isMouseDown, 
+    cloneTablero
+ };

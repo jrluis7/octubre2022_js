@@ -1,4 +1,5 @@
 
+import {cloneTablero} from "../utils/utils.js"
 
 export default class History {
     length = 0;
@@ -47,18 +48,29 @@ export default class History {
     back() {
         // this.data = this.data.filter((v, i) => i != this.data.length - 1);
         // ey
+        if( this.counter>0 ){
 
-        const penultimo = this.counter - 1;
-        const tablero = this.data.find((v, i) => (i === (penultimo)));
+            const penultimo = this.counter - 1;
+            const tablero = this.data.find((v, i) => (i === (penultimo)));
+    
+            const t  = cloneTablero( tablero );
+            this.counter--;
+            console.group('Back');
+            console.log(this.data);
+            console.log('Counter ', this.counter);
+            console.groupEnd('Back');
+            return t;
+        }
+        throw new Error("No hay más movimientos")
+    }
 
-        const t = tablero.map(e => {
-            return e.map(i => i);
-        });
-        this.counter--;
-        console.group('Back');
-        console.log(this.data);
-        console.log('Counter ', this.counter);
-        console.groupEnd('Back');
+    undo_back(){
+        const siguiente = this.counter + 1;
+        const tablero = this.data.find((v, i) => (i === (siguiente)));
+        const t  = cloneTablero( tablero );
+        
+        this.counter++;
+
         return t;
     }
 
