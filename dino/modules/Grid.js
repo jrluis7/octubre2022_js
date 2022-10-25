@@ -1,7 +1,7 @@
 import Square from "./Square.js";
 import History from "./History.js";
 
-import {cloneTablero} from "../utils/utils.js"
+import { cloneTablero } from "../utils/utils.js"
 
 export default class Grid {
     tablero = [];
@@ -25,31 +25,37 @@ export default class Grid {
         }
         const mouseUp = () => {
             this.isPainting = false;
-            
-            const t = cloneTablero( this.tablero );
+
+            const t = cloneTablero(this.tablero);
             this.history.push(t);
+            this.exportToSVG();
         }
 
         const key_controls = (ev) => {
             if (ev.code === "KeyB") {
                 this.tool = 'ERASER';
+
             }
-            if (ev.code === "KeyZ" && ev.ctrlKey  && !ev.shiftKey) {
+            if (ev.code === "KeyZ" && ev.ctrlKey && !ev.shiftKey) {
                 this.popHistory();
+                this.exportToSVG();
+
             }
 
-            if (ev.code === "KeyZ" && ev.ctrlKey  && ev.shiftKey) {
+            if (ev.code === "KeyZ" && ev.ctrlKey && ev.shiftKey) {
                 this.undoPopHistory();
+                this.exportToSVG();
+
             }
         }
-        
+
         const key_controls_up = (ev) => {
             if (ev.code === "KeyB") {
                 this.tool = '';
             }
 
 
-    
+
         }
 
         window.addEventListener('mousedown', mouseDown)
@@ -70,7 +76,7 @@ export default class Grid {
         this.setGridStyle();
         this.fillTablero();
 
-        const t = cloneTablero( this.tablero );
+        const t = cloneTablero(this.tablero);
         this.history.push(t)
     }
 
@@ -90,7 +96,7 @@ export default class Grid {
                 // debugger
             }
         }
-        const t = cloneTablero( g.tablero );
+        const t = cloneTablero(g.tablero);
         g.history.push(t)
 
         return g;
@@ -146,24 +152,24 @@ export default class Grid {
     }
 
     popHistory() {
-        try{
+        try {
             const tablero = this.history.back();
             // this.element.innerHTML = "";
             this.paintTablero(tablero);
 
-        }catch( e ){
+        } catch (e) {
 
         }
     }
 
-    undoPopHistory(){
-        try{
+    undoPopHistory() {
+        try {
             const tablero = this.history.undo_back();
             // this.element.innerHTML = "";
             // debugger
             this.paintTablero(tablero);
 
-        }catch( e ){
+        } catch (e) {
 
         }
     }
@@ -191,7 +197,7 @@ export default class Grid {
         this.fillTablero();
     }
 
-    exportToCss() {
+    exportFullCSS() {
         let str = '';
         for (let y = 0; y < this.y; y++) {
             for (let x = 0; x < this.x; x++) {
@@ -205,7 +211,12 @@ export default class Grid {
         }
 
         str = str.slice(0, -1);
+        return str;
+    }
 
+    exportToCss() {
+
+        let str = this.exportFullCSS();
         let div = document.createElement('div');
         div.style.cssText = `
             height:${this.size_num}${this.size};
@@ -234,6 +245,7 @@ export default class Grid {
                 }
             }
         }
+        document.getElementById('svgOne').innerHTML = ""
         document.getElementById('svgOne').appendChild(g);
 
     }

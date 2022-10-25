@@ -6,26 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href='https://fonts.googleapis.com/css?family=Press Start 2P' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
     <!-- <div id="dinosaur"></div> -->
 
 
-    <div id="grid_entradas">
+    <div id="bar_grid_entradas">
         <div>
-            <p>
-                Ancho :
-                <input id="ancho" type="number" value="10"> Alto:
-                <input id="alto" type="number" value="12"><button id="cambiarTamano">Cambiar</button>
-            </p>
+
+            Ancho :
+            <input id="ancho" type="number" value="10"> Alto:
+            <input id="alto" type="number" value="12"><button id="cambiarTamano">Cambiar</button>
+
         </div>
 
-        <div>
+        <span>
             <button id="eraser"> Borrar </button>
             <button id="paint"> Pintar </button>
-        </div>
+        </span>
 
         <input type="color" id="color">
         <input type="text" id="color">
@@ -33,30 +35,48 @@
     <!-- <div id="linea">
 
     </div> -->
+    <div class="barLeft">
 
-    <div class="content">
-        <div id="grid">
+    </div>
+    <div class="row" id="mainContent">
+        <div class="content">
+            <div id="grid">
 
+            </div>
+        </div>
+        <!-- <button id="export_svg"> Exportar SVG </button> -->
+
+    </div>
+    <div class="barRight">
+
+        <div>
+
+            <div id="preview">
+
+            </div>
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                    viewBox="0 0 200 400" id="svgOne">
+
+                </svg>
+
+            </div>
+            <button id="download_svg" class="button--green" onclick="downloadSVGAsText()"> Download SVG </button>
+            <button id="export"> Exportar CSS</button>
+            <pre id="code_css" class="code_css">
+            </pre>
         </div>
     </div>
-    <div>
-        <button id="export"> Exportar </button>
-    </div>
-
-
-    <div id="preview">
-
-    </div>
-    <button id="export_svg"> Exportar SVG </button>
-    <button id="download_svg" onclick="downloadSVGAsText()"> Download SVG </button>
 
     <div>
-        <svg width="400" height="400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-            version="1.1" id="svgOne">
-
-        </svg>
 
     </div>
+
+
+
+
+
+
 
     <script src="app.js" type="module"></script>
 </body>
