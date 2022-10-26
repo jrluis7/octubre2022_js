@@ -1,8 +1,9 @@
 :root {
     --main-bg-color: rgb(155, 155, 155);
     --top-px: 60px;
-    --width-right-bar: 250px;
+    --width-right-bar: 300px;
     --width-left-bar: 100px;
+    --padding-general: 7px;
 }
 
 * {
@@ -55,11 +56,26 @@ button {
     bottom: 0;
     width: var(--width-right-bar);
     background-color: var(--main-bg-color);
+    overflow-y: auto;
 }
 
 .barRight .code_css {
     background-color: #323232;
     color: white;
+    white-space: normal;
+    max-height: 200px;
+    overflow: auto;
+    padding: 10px;
+
+}
+
+#svgOne {
+
+    background: repeating-linear-gradient(-45deg,
+            rgb(255, 255, 255),
+            rgb(255, 255, 255) 5px,
+            rgb(238, 238, 238) 5px,
+            rgb(255, 255, 255) 10px);
 }
 
 .barLeft {
@@ -69,6 +85,7 @@ button {
     top: var(--top-px);
     width: var(--width-left-bar);
     background-color: var(--main-bg-color);
+    padding: var(--padding-general);
 }
 
 #mainContent {

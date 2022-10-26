@@ -701,10 +701,10 @@ btnExport.addEventListener('click', function () {
     preview.appendChild(grid_element.exportToCss())
 })
 
-btnExport_svg.addEventListener('click', function () {
-    svgOne.innerHTML = "";
-    svgOne.appendChild(grid_element.exportToSVG())
-})
+// btnExport_svg.addEventListener('click', function () {
+//     svgOne.innerHTML = "";
+//     svgOne.appendChild(grid_element.exportToSVG())
+// })
 
 btnEraser.addEventListener('click', function () {
     grid_element.switchEraser();

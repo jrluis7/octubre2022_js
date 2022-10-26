@@ -29,6 +29,7 @@ export default class Grid {
             const t = cloneTablero(this.tablero);
             this.history.push(t);
             this.exportToSVG();
+            this.exportToCss();
         }
 
         const key_controls = (ev) => {
@@ -39,12 +40,15 @@ export default class Grid {
             if (ev.code === "KeyZ" && ev.ctrlKey && !ev.shiftKey) {
                 this.popHistory();
                 this.exportToSVG();
+                this.exportToCss();
+
 
             }
 
             if (ev.code === "KeyZ" && ev.ctrlKey && ev.shiftKey) {
                 this.undoPopHistory();
                 this.exportToSVG();
+                this.exportToCss();
 
             }
         }
@@ -217,6 +221,8 @@ export default class Grid {
     exportToCss() {
 
         let str = this.exportFullCSS();
+        this.paintCssCode(str);
+
         let div = document.createElement('div');
         div.style.cssText = `
             height:${this.size_num}${this.size};
@@ -225,6 +231,13 @@ export default class Grid {
         div.style.boxShadow = str;
         // debugger
         return div
+    }
+    paintCssCode(str) {
+
+        document.querySelector('#code_css').innerHTML = `
+        height: 1em;
+        width: 1em;
+        box-shadow: ${str}`
     }
 
     exportToSVG() {
@@ -235,8 +248,8 @@ export default class Grid {
             for (let x = 0; x < this.x; x++) {
                 if (this.tablero[y][x] !== "") {
                     let rect = document.createElementNS(svgns, 'rect');
-                    rect.setAttribute('x', (x + 1) * size);
-                    rect.setAttribute('y', (y + 1) * size);
+                    rect.setAttribute('x', (x) * size);
+                    rect.setAttribute('y', (y) * size);
                     rect.setAttribute('shape-rendering', 'crispedges');
                     rect.setAttribute('height', size);
                     rect.setAttribute('width', size);
