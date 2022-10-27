@@ -88,6 +88,12 @@ button {
     padding: var(--padding-general);
 }
 
+.containerColors {}
+
+.containerColors input {
+    width: 100%;
+}
+
 #mainContent {
     position: fixed;
     top: var(--top-px);

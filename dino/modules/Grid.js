@@ -2,12 +2,14 @@ import Square from "./Square.js";
 import History from "./History.js";
 
 import { cloneTablero } from "../utils/utils.js"
+import { Palette } from "./Palette.js";
 
 export default class Grid {
     tablero = [];
     color = "red";
     tool = "";
     history = []
+    palette;
     constructor({ x, y, element, color }) {
         this.size_num = 1;
         this.size = "em";
@@ -18,56 +20,7 @@ export default class Grid {
         this.history = new History();
         this.isPainting = false;
 
-        const mouseDown = (ev) => {
-            // console.log('Ey, click!', this);
-            // console.log('Down ->', ev)
-            if (ev.which === 1) this.isPainting = true;
-        }
-        const mouseUp = () => {
-            this.isPainting = false;
-
-            const t = cloneTablero(this.tablero);
-            this.history.push(t);
-            this.exportToSVG();
-            this.exportToCss();
-        }
-
-        const key_controls = (ev) => {
-            if (ev.code === "KeyB") {
-                this.tool = 'ERASER';
-
-            }
-            if (ev.code === "KeyZ" && ev.ctrlKey && !ev.shiftKey) {
-                this.popHistory();
-                this.exportToSVG();
-                this.exportToCss();
-
-
-            }
-
-            if (ev.code === "KeyZ" && ev.ctrlKey && ev.shiftKey) {
-                this.undoPopHistory();
-                this.exportToSVG();
-                this.exportToCss();
-
-            }
-        }
-
-        const key_controls_up = (ev) => {
-            if (ev.code === "KeyB") {
-                this.tool = '';
-            }
-
-
-
-        }
-
-        window.addEventListener('mousedown', mouseDown)
-        window.addEventListener('mouseup', mouseUp)
-        // window.removeEventListener('keydown', key_controls)
-        window.addEventListener('keydown', key_controls)
-        window.addEventListener('keyup', key_controls_up)
-
+        this.init_events();
         console.log(x, y);
         this.tablero = new Array(this.y);
         for (let i = 0; i < this.tablero.length; i++) {
@@ -82,6 +35,8 @@ export default class Grid {
 
         const t = cloneTablero(this.tablero);
         this.history.push(t)
+
+        this.palette = new Palette({ grid: this, id: "lastColors", id_input_color: 'color' });
     }
 
     static newTablero(tablero, element) {
@@ -104,6 +59,47 @@ export default class Grid {
         g.history.push(t)
 
         return g;
+
+    }
+
+    init_events() {
+        const mouseDown = (ev) => {
+            if (ev.which === 1) this.isPainting = true;
+        }
+        const mouseUp = () => {
+            this.isPainting = false;
+            const t = cloneTablero(this.tablero);
+            this.history.push(t);
+            this.exportToSVG();
+            this.exportToCss();
+        }
+
+        const key_controls = (ev) => {
+            if (ev.code === "KeyB") {
+                this.tool = 'ERASER';
+            }
+            if (ev.code === "KeyZ" && ev.ctrlKey && !ev.shiftKey) {
+                this.popHistory();
+                this.exportToSVG();
+                this.exportToCss();
+            }
+            if (ev.code === "KeyZ" && ev.ctrlKey && ev.shiftKey) {
+                this.undoPopHistory();
+                this.exportToSVG();
+                this.exportToCss();
+            }
+        }
+
+        const key_controls_up = (ev) => {
+            if (ev.code === "KeyB") {
+                this.tool = '';
+            }
+        }
+
+        window.addEventListener('mousedown', mouseDown)
+        window.addEventListener('mouseup', mouseUp)
+        window.addEventListener('keydown', key_controls)
+        window.addEventListener('keyup', key_controls_up)
 
     }
 

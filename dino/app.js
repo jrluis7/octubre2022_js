@@ -692,9 +692,7 @@ const grid_element = Grid.newTablero(t, grid);
 btnCambiarTam.addEventListener('click', function () {
     grid_element.setSize(entradaAncho.valueAsNumber, entradaAlto.valueAsNumber);
 })
-nodoColor.addEventListener('change', function () {
-    grid_element.setColor(this.value);
-})
+
 
 btnExport.addEventListener('click', function () {
     preview.innerHTML = "";

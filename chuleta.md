@@ -118,7 +118,52 @@ str_html += `</ul>`;
 
 // Voy a pintar
 nodoUl.innerHTML = str_html
+    ```
+
+    ### Create Element y Append Child 
+
+    Debería usarlo cuando el elemento que entra tiene eventos asociados
+
+    Cuando queremos añadir una animación de entrada ( sólo al elemento que entra )
+```js
+  let nodoPost = document.createElement('div');
+    nodoPost.classList.add('post');
+    nodoPost.classList.add('appear');
+    console.log(nodoPost);
+
+    let nodoSpan = document.createElement('span');
+    nodoSpan.classList.add('changeColor');
+    nodoSpan.innerHTML = "X";
+    console.log(nodoSpan);
+
+    nodoSpan.addEventListener('click', function () {
+        // const parent = this.parentNode;
+        const parent = nodoPost;
+        if (parent.style.backgroundColor === "coral") {
+            parent.style.backgroundColor = "white"
+        } else {
+            parent.style.backgroundColor = "coral"
+        }
+    });
+
+    let nodoH2 = document.createElement('h2');
+    nodoH2.innerHTML = texto
+
+    let nodoP = document.createElement('p')
+    nodoP.innerHTML = "TEXTO DEL ELEMENTO"
+
+
+    nodoPost.append(nodoSpan);
+    nodoPost.append(nodoH2);
+    nodoPost.append(nodoP);
+
+    console.log(nodoPost);
+
+    // Añadirlo al DOM -> Añadir nuevo contenido a un elemento del dom
+    grid.append(nodoPost);
+
 ```
+
 
 ## Crear eventos
 
