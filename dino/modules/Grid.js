@@ -37,6 +37,12 @@ export default class Grid {
         this.history.push(t)
 
         this.palette = new Palette({ grid: this, id: "lastColors", id_input_color: 'color' });
+
+
+        window.addEventListener('colorSeleccionado', (e) => {
+            debugger
+            this.color = e.detail.color
+        })
     }
 
     static newTablero(tablero, element) {

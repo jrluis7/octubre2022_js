@@ -1,5 +1,5 @@
 
-
+import { rgbStringToHex } from '../utils/utils.js'
 export class Palette {
     history
     recomendedColors
@@ -9,12 +9,37 @@ export class Palette {
         this.recomendedColors = recomendedColors ? recomendedColors : [];
         this.id = id;
         this.grid = grid;
-        debugger
+
         const that = this;
-        document.querySelector("#" + id_input_color).addEventListener('change', function () {
+        this.input = document.querySelector("#" + id_input_color)
+        this.input.addEventListener('change', function () {
             that.grid.setColor(this.value);
-            debugger
+            that.addColor(this.value)
         })
+
+
+    }
+
+    addColor(color) {
+
+        const found = this.history.find(e => e === color);
+        if (found) {
+            return
+        }
+        let nodoDiv = document.createElement('div');
+        nodoDiv.classList.add('color');
+        nodoDiv.style.backgroundColor = color;
+        document.querySelector('#lastColors').append(nodoDiv);
+        this.history = [...this.history, color];
+
+        nodoDiv.addEventListener('click', () => {
+            const color = nodoDiv.style.backgroundColor;
+            window.dispatchEvent(new CustomEvent('colorSeleccionado', { detail: { color: color } }))
+
+
+            this.input.value = rgbStringToHex(color);
+        })
+
     }
 
     getMainColors(tablero) {
