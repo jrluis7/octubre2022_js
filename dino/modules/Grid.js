@@ -10,6 +10,8 @@ export default class Grid {
     tool = "";
     history = []
     palette;
+    sizeSvg = 10;
+
     constructor({ x, y, element, color }) {
         this.size_num = 1;
         this.size = "em";
@@ -36,7 +38,7 @@ export default class Grid {
         const t = cloneTablero(this.tablero);
         this.history.push(t)
         // debugger
-        this.palette = new Palette({ grid: this, id: "lastColors", id_input_color: 'color' ,tablero:this.tablero});
+        this.palette = new Palette({ grid: this, id: "lastColors", id_input_color: 'color', tablero: this.tablero });
 
 
         window.addEventListener('colorSeleccionado', (e) => {
@@ -62,6 +64,7 @@ export default class Grid {
         }
         const t = cloneTablero(g.tablero);
         g.history.push(t)
+        debugger
         g.palette.getColors(t);
 
         return g;
@@ -201,6 +204,8 @@ export default class Grid {
         }
         this.setGridStyle();
         this.fillTablero();
+        const svgElement = document.getElementById('svgOne');
+        svgElement.setAttribute("viewBox", `0,0,${(this.x * this.sizeSvg)} ,${(this.y * this.sizeSvg)}`)
     }
 
     exportFullCSS() {
@@ -245,16 +250,15 @@ export default class Grid {
     exportToSVG() {
         const svgns = "http://www.w3.org/2000/svg"
         let g = document.createElementNS(svgns, 'g');
-        let size = 10;
         for (let y = 0; y < this.y; y++) {
             for (let x = 0; x < this.x; x++) {
                 if (this.tablero[y][x] !== "") {
                     let rect = document.createElementNS(svgns, 'rect');
-                    rect.setAttribute('x', (x) * size);
-                    rect.setAttribute('y', (y) * size);
+                    rect.setAttribute('x', (x) * this.sizeSvg);
+                    rect.setAttribute('y', (y) * this.sizeSvg);
                     rect.setAttribute('shape-rendering', 'crispedges');
-                    rect.setAttribute('height', size);
-                    rect.setAttribute('width', size);
+                    rect.setAttribute('height', this.sizeSvg);
+                    rect.setAttribute('width', this.sizeSvg);
                     rect.setAttribute('fill', this.tablero[y][x]);
                     g.appendChild(rect);
                 }
@@ -266,4 +270,3 @@ export default class Grid {
     }
 
 }
-

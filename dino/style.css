@@ -35,9 +35,9 @@ button {
     box-shadow: inset -4px -4px 0px 0px #4aa52e;
 }
 
-h4{
+h4 {
     font-family: "Press Start 2P", cursive;
-    color:white
+    color: white
 }
 
 #bar_grid_entradas {
@@ -99,7 +99,8 @@ h4{
     width: 100%;
 }
 
-.containerColors #lastColors, #recomendedColors {
+.containerColors #lastColors,
+#recomendedColors {
     margin: 10px auto;
     display: flex;
     flex-wrap: wrap;
@@ -109,7 +110,8 @@ h4{
     /* gap: 2px; */
 }
 
-.containerColors #lastColors .color,#recomendedColors .color  {
+.containerColors #lastColors .color,
+#recomendedColors .color {
     /* width: 50%; */
     aspect-ratio: 1;
     cursor: pointer;

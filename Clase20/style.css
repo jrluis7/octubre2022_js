@@ -1,0 +1,69 @@
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+#gridAlumnos {
+    display: flex;
+}
+
+.alumno {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 7px;
+}
+
+#modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #00000088;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    /* background-color: rgba( 0, 255, 0, 0.5 ); */
+}
+
+#modal.open {
+    display: flex;
+}
+
+#modal .container {
+    background-color: #FFFFFF;
+    width: 90%;
+    max-width: 400px;
+    padding: 10px;
+
+}
+
+.aparecer {
+    animation: appear 1s;
+}
+
+.desaparecer {
+    animation: disappear 1s;
+}
+
+
+
+@keyframes disappear {
+    0% {
+        transform: translateY(0%);
+    }
+
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes appear {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+}
