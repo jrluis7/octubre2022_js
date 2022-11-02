@@ -35,12 +35,11 @@ export default class Grid {
 
         const t = cloneTablero(this.tablero);
         this.history.push(t)
-
-        this.palette = new Palette({ grid: this, id: "lastColors", id_input_color: 'color' });
+        // debugger
+        this.palette = new Palette({ grid: this, id: "lastColors", id_input_color: 'color' ,tablero:this.tablero});
 
 
         window.addEventListener('colorSeleccionado', (e) => {
-            debugger
             this.color = e.detail.color
         })
     }
@@ -63,6 +62,7 @@ export default class Grid {
         }
         const t = cloneTablero(g.tablero);
         g.history.push(t)
+        g.palette.getColors(t);
 
         return g;
 

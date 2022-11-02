@@ -2,7 +2,7 @@
     --main-bg-color: rgb(155, 155, 155);
     --top-px: 60px;
     --width-right-bar: 300px;
-    --width-left-bar: 100px;
+    --width-left-bar: 200px;
     --padding-general: 7px;
 }
 
@@ -33,6 +33,11 @@ button {
 .button--green {
     background: #92CD41;
     box-shadow: inset -4px -4px 0px 0px #4aa52e;
+}
+
+h4{
+    font-family: "Press Start 2P", cursive;
+    color:white
 }
 
 #bar_grid_entradas {
@@ -94,17 +99,17 @@ button {
     width: 100%;
 }
 
-.containerColors #lastColors {
+.containerColors #lastColors, #recomendedColors {
     margin: 10px auto;
     display: flex;
     flex-wrap: wrap;
     display: grid;
     gap: 2px;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     /* gap: 2px; */
 }
 
-.containerColors #lastColors .color {
+.containerColors #lastColors .color,#recomendedColors .color  {
     /* width: 50%; */
     aspect-ratio: 1;
     cursor: pointer;
