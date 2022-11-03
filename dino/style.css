@@ -15,6 +15,10 @@ body {
     font-family: sans-serif;
 }
 
+.grid_btns {
+    display: flex;
+}
+
 button {
     line-height: 1.3em;
     background: #878787;
@@ -22,8 +26,8 @@ button {
     display: inline-block;
     position: relative;
     text-align: center;
-    font-size: 14px;
-    padding: 12px;
+    font-size: 11px;
+    padding: 6px;
     font-family: "Press Start 2P", cursive;
     text-decoration: none;
     color: white;
@@ -277,5 +281,5 @@ h4 {
 
 
 #svgOne {
-    aspect-ratio: 1/2;
+    /* aspect-ratio: 1/2; */
 }

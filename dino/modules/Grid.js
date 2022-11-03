@@ -11,6 +11,8 @@ export default class Grid {
     history = []
     palette;
     sizeSvg = 10;
+    btnEraser;
+    btnPaint;
 
     constructor({ x, y, element, color }) {
         this.size_num = 1;
@@ -40,10 +42,14 @@ export default class Grid {
         // debugger
         this.palette = new Palette({ grid: this, id: "lastColors", id_input_color: 'color', tablero: this.tablero });
 
+        this.setSize(x, y)
 
         window.addEventListener('colorSeleccionado', (e) => {
             this.color = e.detail.color
         })
+        this.btnEraser = document.querySelector('#btnEraser');
+        this.btnPaint = document.querySelector('#btnPaint');
+
     }
 
     static newTablero(tablero, element) {
@@ -270,3 +276,13 @@ export default class Grid {
     }
 
 }
+
+
+
+
+
+// [
+//     [ "X","X","X" ]
+//     [ "X","X","X" ]
+//     [ "X","X","X" ]
+// ]
