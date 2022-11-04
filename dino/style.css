@@ -126,6 +126,8 @@ h4 {
     top: var(--top-px);
     left: var(--width-left-bar);
     right: var(--width-right-bar);
+    bottom: 0;
+    overflow: hidden;
     justify-content: center;
     padding: 10px;
 }

@@ -1,5 +1,6 @@
 import Square from "./Square.js";
 import History from "./History.js";
+import Controls from "./Controls.js"
 
 import { cloneTablero } from "../utils/utils.js"
 import { Palette } from "./Palette.js";
@@ -13,7 +14,7 @@ export default class Grid {
     sizeSvg = 10;
     btnEraser;
     btnPaint;
-
+    controls;
     constructor({ x, y, element, color }) {
         this.size_num = 1;
         this.size = "em";
@@ -24,7 +25,7 @@ export default class Grid {
         this.history = new History();
         this.isPainting = false;
 
-        this.init_events();
+        this.controls = new Controls({ grid: this })
         console.log(x, y);
         this.tablero = new Array(this.y);
         for (let i = 0; i < this.tablero.length; i++) {
@@ -44,11 +45,11 @@ export default class Grid {
 
         this.setSize(x, y)
 
-        window.addEventListener('colorSeleccionado', (e) => {
-            this.color = e.detail.color
-        })
-        this.btnEraser = document.querySelector('#btnEraser');
-        this.btnPaint = document.querySelector('#btnPaint');
+        this.btnEraser = document.querySelector('#eraser');
+        this.btnPaint = document.querySelector('#paint');
+
+
+        this.switchPaint()
 
     }
 
@@ -70,53 +71,12 @@ export default class Grid {
         }
         const t = cloneTablero(g.tablero);
         g.history.push(t)
-        debugger
         g.palette.getColors(t);
 
         return g;
 
     }
 
-    init_events() {
-        const mouseDown = (ev) => {
-            if (ev.which === 1) this.isPainting = true;
-        }
-        const mouseUp = () => {
-            this.isPainting = false;
-            const t = cloneTablero(this.tablero);
-            this.history.push(t);
-            this.exportToSVG();
-            this.exportToCss();
-        }
-
-        const key_controls = (ev) => {
-            if (ev.code === "KeyB") {
-                this.tool = 'ERASER';
-            }
-            if (ev.code === "KeyZ" && ev.ctrlKey && !ev.shiftKey) {
-                this.popHistory();
-                this.exportToSVG();
-                this.exportToCss();
-            }
-            if (ev.code === "KeyZ" && ev.ctrlKey && ev.shiftKey) {
-                this.undoPopHistory();
-                this.exportToSVG();
-                this.exportToCss();
-            }
-        }
-
-        const key_controls_up = (ev) => {
-            if (ev.code === "KeyB") {
-                this.tool = '';
-            }
-        }
-
-        window.addEventListener('mousedown', mouseDown)
-        window.addEventListener('mouseup', mouseUp)
-        window.addEventListener('keydown', key_controls)
-        window.addEventListener('keyup', key_controls_up)
-
-    }
 
     paintTablero(tablero) {
         let h = tablero.length;
@@ -191,9 +151,18 @@ export default class Grid {
 
     switchEraser() {
         this.tool = 'ERASER';
+        this.btnEraser.setAttribute('disabled', true);
+        this.btnPaint.removeAttribute('disabled');
+        this.element.style.cursor = 'not-allowed'
+
     }
     switchPaint() {
         this.tool = '';
+        this.btnEraser.removeAttribute('disabled');
+        this.btnPaint.setAttribute('disabled', true);
+        this.element.style.cursor = 'cell'
+
+
     }
 
     setSize(x, y) {
