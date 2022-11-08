@@ -75,7 +75,8 @@ export default class Controls {
             const position_main = mainContent.getBoundingClientRect();
             console.log(position_main);
             const c_x = position_main.x + position_main.width / 2
-            console.log('CX', c_x);
+            const c_y = position_main.y + position_main.height / 2
+            console.log('CX', c_x, 'CY', c_y);
 
             const x = ev.pageX;
 

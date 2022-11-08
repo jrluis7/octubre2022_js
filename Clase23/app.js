@@ -29,14 +29,14 @@ let texto = 'Hola mundo';
 console.log(texto);
 
 console.log('Longitud', texto.length)
-// class Utils{
+class Utils {
 
-//     static getData(){
+    static getData() {
 
-//     } 
-// }
+    }
+}
 
-// Utils.getData();
+Utils.getData();
 // Texto -> Notación array para acceder a sus caracteres
 console.log(texto[0]);// H
 console.log(texto[1]);// o
