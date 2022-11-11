@@ -17,7 +17,10 @@ export default class Square {
         }
         const mouse_move = (ev) => {
             // console.log(ev)
-            this.paint(this.grid.color, ev);
+            if (!ev.altKey) {
+
+                this.paint(this.grid.color, ev);
+            };
 
         }
         this.seleccionado = false;

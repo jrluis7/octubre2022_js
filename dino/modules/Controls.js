@@ -7,6 +7,8 @@ export default class Controls {
     translate_x = 0;
     translate_y = 0;
     scalePaint = 1;
+    isMoving = false;
+    stateCursor = "";
 
     constructor({ grid, redoPaint, undoPaint, eraserKey, mouseUp }) {
         this.grid = grid;
@@ -22,9 +24,19 @@ export default class Controls {
 
     init() {
         const mouseDown = (ev) => {
-            if (ev.which === 1) this.grid.isPainting = true;
+            if (ev.altKey) {
+                this.isMoving = true;
+                this.traslate_grid(ev);
+                this.stateCursor = this.grid.element.style.cursor;
+                this.grid.element.style.cursor = 'grabbing';
+
+            } else if (ev.which === 1) this.grid.isPainting = true;
         }
         const mouseUp_ = () => {
+
+            this.isMoving = false;
+            this.grid.element.style.cursor = this.stateCursor;
+
             this.grid.isPainting = false;
             const t = cloneTablero(this.grid.tablero);
             this.grid.history.push(t);
@@ -46,6 +58,10 @@ export default class Controls {
                 this.grid.exportToSVG();
                 this.grid.exportToCss();
             }
+
+            if (ev.key === "Alt") {
+                this.grid.element.style.cursor = "grab"
+            }
         }
 
         const key_controls_up = (ev) => {
@@ -53,6 +69,10 @@ export default class Controls {
                 this.grid.tool = '';
                 this.grid.switchPaint();
             }
+
+            this.grid.switchPaint();
+
+
         }
 
         const wheel_zoom = (ev) => {
@@ -73,11 +93,11 @@ export default class Controls {
 
                 console.log('Dist_x :', dist_x, 'Dist_y:', dist_y);
 
-                if (ev.wheelDelta > 0) {
+                if (ev.wheelDelta > 0 && this.scalePaint < 3) {
                     this.scalePaint += 0.1;
                     this.translate_x += (dist_x / 10)
                     this.translate_y += (dist_y / 10)
-                } else if (ev.wheelDelta < 0) {
+                } else if (ev.wheelDelta < 0 && this.scalePaint > 0.5) {
                     this.scalePaint -= 0.1;
                     this.translate_x -= (dist_x / 10)
                     this.translate_y -= (dist_y / 10)
@@ -91,12 +111,18 @@ export default class Controls {
 
 
 
-                this.grid.element.style.transform = `scale(${this.scalePaint}) translate( ${this.translate_x}px,${this.translate_y}px  )`;
+                this.grid.element.style.transform = `translate( ${this.translate_x}px,${this.translate_y}px  ) scale(${this.scalePaint}) `;
 
             }
         }
 
         const mouseMove = (ev) => {
+
+            if (this.isMoving) {
+                this.traslate_grid(ev);
+            }
+
+
             const position_main = mainContent.getBoundingClientRect();
             // console.log(position_main);
             const c_x = position_main.x + position_main.width / 2
@@ -134,6 +160,16 @@ export default class Controls {
         })
     }
 
+    traslate_grid(ev) {
+
+        console.log(">>>> ", ev)
+        console.log(" X > ", ev.movementX)
+        console.log(" Y > ", ev.movementY)
+        this.translate_x += ev.movementX;
+        this.translate_y += ev.movementY;
+
+        this.grid.element.style.transform = `translate( ${this.translate_x}px,${this.translate_y}px  ) scale(${this.scalePaint}) `;
+    }
 
     eraser() {
 
