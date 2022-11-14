@@ -33,6 +33,7 @@
 
         function editPixels(imgData) {
             console.log(imgData)
+            console.log(imgData.length)
 
             for (var i = 0; i < imgData.length; i += 4) {
                 // imgData[i] = imgData[i] - 100;
@@ -43,6 +44,20 @@
                 imgData[i + 1] = 255;
                 imgData[i + 2] = 0;
             }
+
+            imgData[0] = 0;
+            imgData[1] = 0;
+            imgData[2] = 0;
+            imgData[3] = 255;
+
+            imgData[4] = 0;
+            imgData[5] = 0;
+            imgData[6] = 0;
+            imgData[7] = 255;
+        }
+
+        function paintPixel({ imagen, posicion, color }) {
+            // imagen[posicion] = 
         }
 
         function drawEditedImage(newData) {
