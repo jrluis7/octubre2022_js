@@ -1,0 +1,63 @@
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+h1 {
+    margin: 0;
+    padding: 20px
+}
+
+html {
+
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 4000px;
+    /* overflow: hidden; */
+}
+
+#primero {
+    height: 900px;
+    background-color: lightcoral;
+}
+
+
+#segundo {
+    position: relative;
+    height: 700px;
+    background-color: rgb(128, 240, 186);
+    padding: 30px;
+}
+
+#hijoSegundo {
+    position: relative;
+    height: 100px;
+    background-color: darkgreen;
+    color: white;
+    padding: 20px;
+    opacity: 0;
+    /* transform: scale(0.5); */
+}
+
+#tercero {
+    height: 700px;
+    background-color: rgb(128, 171, 240);
+}
+
+.appear {
+    animation: appearFromLeft 0.7s forwards;
+}
+
+@keyframes appearFromLeft {
+    0% {
+        left: -100%;
+        opacity: 0;
+    }
+
+    100% {
+        left: 0%;
+        opacity: 1;
+    }
+}

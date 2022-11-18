@@ -1,0 +1,17 @@
+#contenido {
+    background-color: lightblue;
+    padding: 20px;
+}
+
+h3 {
+    margin: 0;
+}
+
+#cuadrado {
+    /* left: 0; */
+    position: relative;
+    height: 100px;
+    width: 100px;
+    background-color: coral;
+    /* transition: all 1s; */
+}
