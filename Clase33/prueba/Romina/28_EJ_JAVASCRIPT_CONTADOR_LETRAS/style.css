@@ -1,0 +1,24 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+*, *:before, *:after{
+    box-sizing: border-box;
+}
+.count_letters{
+    margin: 5em 0 0 0;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.text_area{
+    width: 50em;
+    height: 15em;
+}
+
+.contador_texto{
+    margin: 3em 0 0 0;
+}

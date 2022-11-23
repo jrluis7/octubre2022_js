@@ -1,0 +1,15 @@
+*{
+    box-sizing: border-box;
+}
+
+div#primer_resultado{
+    background-color: rgb(9, 163, 22);
+    height: 200px;
+    text-align: center;
+}
+
+div#resultado{
+    background-color: blueviolet;
+    height: 200px;
+    color: white;
+}

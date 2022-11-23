@@ -33,7 +33,7 @@
             ctx.drawImage(img, 0, 0);
             originalImage =
                 imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
-            console.log(imageData)
+            // console.log(imageData)
             editPixels(imageData.data);
 
             drawEditedImage(imageData);
@@ -43,18 +43,18 @@
         };
 
         function editPixels(imgData) {
-            console.log(imgData)
-            console.log(imgData.length)
+            // console.log(imgData)
+            // console.log(imgData.length)
 
-            for (var i = 0; i < imgData.length; i += 4) {
-                // imgData[i] = imgData[i] + 100;
-                // imgData[i + 1] = imgData[i + 1] + 100;
-                // imgData[i + 2] = imgData[i + 2] + 100;
+            // for (var i = 0; i < imgData.length; i += 4) {
+            //     // imgData[i] = imgData[i] + 100;
+            //     // imgData[i + 1] = imgData[i + 1] + 100;
+            //     // imgData[i + 2] = imgData[i + 2] + 100;
 
-                // imgData[i] = 200;
-                // imgData[i + 1] = 200;
-                // imgData[i + 2] = 200;
-            }
+            //     // imgData[i] = 200;
+            //     // imgData[i + 1] = 200;
+            //     // imgData[i + 2] = 200;
+            // }
 
             // imgData[0] = 0;
             // imgData[1] = 0;
@@ -65,7 +65,7 @@
             // imgData[5] = 0;
             // imgData[6] = 0;
             // imgData[7] = 255;
-            const paso = 5;
+            const paso = 8;
             for (let f = 0; f < img.width; f += paso) {
                 // console.log(i)
 
@@ -73,12 +73,12 @@
 
                     try {
                         let media_color = getMediaColor({ imagen: imageData, fila: f, columna: c, spread: paso });
-                        console.log(media_color)
+                        // console.log(media_color)
                         paintSpreadColor({ imageData, fila: f, columna: c, spread: paso, color: media_color })
 
                     } catch (e) {
-                        console.log(e)
-                        console.log(e.stack)
+                        // console.log(e)
+                        // console.log(e.stack)
                         debugger
                     }
                     // paintPixel({ imagen: imgData, posicion: f * img.width + c, color: { r: 255, g: 0, b: 0 } })
@@ -87,7 +87,7 @@
 
             }
 
-            console.log(imgData)
+            // console.log(imgData)
             // paintPixel({ imagen: imgData, posicion: 0, color: { r: 0, g: 0, b: 0 } })
             // paintPixel({ imagen: imgData, posicion: 300, color: { r: 0, g: 0, b: 0 } })
         }
@@ -103,7 +103,7 @@
             for (let i = limiteFila_inf; i < limiteFila_sup; i++) {
 
                 for (let c = limiteColumn_inf; c < limiteColumn_sup; c++) {
-                    let color = getColor({ imagen: imageData, posicion: i * imagen.width + c * 4 });
+                    let color = getColor({ imagen: imageData, posicion: i * imagen.width + c });
                     colors.push(color);
                 }
 
@@ -112,6 +112,13 @@
                 debugger
                 throw new Error("No hay colores")
             }
+
+            colors = colors.filter(element => {
+                if (element.r != undefined && element.g != undefined && element.b != undefined && element.a !== undefined) {
+                    return true;
+                }
+            })
+
             const suma = colors.reduce((acc, current) => {
                 return {
                     r: acc.r + current.r,
@@ -122,13 +129,14 @@
 
             }, { r: 0, g: 0, b: 0, a: 0 })
             const media = {
-                r: Math.trunc(suma.r / colors.length),
-                g: Math.trunc(suma.g / colors.length),
-                b: Math.trunc(suma.b / colors.length),
+                r: convert_8_bits(Math.trunc(suma.r / colors.length)),
+                g: convert_8_bits(Math.trunc(suma.g / colors.length)),
+                b: convert_8_bits(Math.trunc(suma.b / colors.length)),
                 a: Math.trunc(suma.a / colors.length),
             }
             if (Number.isNaN(media.r)) {
                 debugger
+                console.trace();
                 throw new Error('No hay media')
             }
 
@@ -179,6 +187,39 @@
         var contador = 0;
 
 
+
+
+        function getBitColors(r, g, b) {
+            // 3 bits para el rojo -> 8
+            // 3 bits para el verde -> 8
+            // 2 bits para el azul -> 4
+
+            // 111 000 00 // Red
+
+            // let r = 100;
+            // let g = 250;
+            // let b = 10;
+
+
+            let color = `rgb(${r},${g},${b})`;
+
+            let color_8bits = `rgb(${convert_8_bits(r)},${convert_8_bits(g)},${convert_8_bits(b)})`;
+
+
+            console.log(color, "-->>", color_8bits, "-->",);
+
+
+
+        }
+        function convert_8_bits(n) {
+            // let r = 100;
+            let color_8bits = Math.trunc(8 * n / 256)
+            let color = 256 * color_8bits / 8;
+            return color;
+        }
+
+
+        getBitColors();
     </script>
 </body>
 
