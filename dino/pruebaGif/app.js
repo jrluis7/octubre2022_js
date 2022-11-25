@@ -12,12 +12,13 @@ var ctx = canvas.getContext('2d');
 var arr = [];
 var originalImage;
 var imageData;
+let ref;
 img.onload = function () {
     ctx.drawImage(img, 0, 0);
-    originalImage =
-        imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+    // originalImage =
+    imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
     // console.log(imageData)
-    editPixels(imageData.data);
+    editPixels(imageData.data, img);
 
     drawEditedImage(imageData);
 
@@ -25,34 +26,61 @@ img.onload = function () {
 
 };
 
-function editPixels(imgData) {
-    // console.log(imgData)
-    // console.log(imgData.length)
 
-    // for (var i = 0; i < imgData.length; i += 4) {
-    //     // imgData[i] = imgData[i] + 100;
-    //     // imgData[i + 1] = imgData[i + 1] + 100;
-    //     // imgData[i + 2] = imgData[i + 2] + 100;
+let nodoImg = document.querySelector('#image_input');
 
-    //     // imgData[i] = 200;
-    //     // imgData[i + 1] = 200;
-    //     // imgData[i + 2] = 200;
-    // }
+nodoImg.addEventListener('change', function () {
 
-    // imgData[0] = 0;
-    // imgData[1] = 0;
-    // imgData[2] = 0;
-    // imgData[3] = 255;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let imgSrc = '';
+    if (nodoImg.value !== '') {
+        imgSrc = window.URL.createObjectURL(nodoImg.files[0]);
+    }
+    const img = new Image();
+    img.onload = function () {
+        clearInterval(ref);
+        ctx.drawImage(img, 0, 0);
+        // originalImage =
+        imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        // console.log(imageData)
+        console.log('width', img.width)
+        console.log('height', img.height)
+        debugger;
 
-    // imgData[4] = 0;
-    // imgData[5] = 0;
-    // imgData[6] = 0;
-    // imgData[7] = 255;
-    const paso = 7;
-    for (let f = 0; f < img.width; f += paso) {
+
+        let blur = 1;
+        let direction = 'INC';
+        ref = setInterval(() => {
+            if (blur > 30) {
+                direction = 'DEC'
+            } else if (blur <= 1) {
+                direction = 'INC'
+            }
+            (direction === 'INC') ? blur++ : blur--
+
+            imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+            editPixels(imageData.data, img, blur);
+            drawEditedImage(imageData);
+        }, 500)
+
+    }
+    img.src = imgSrc;
+
+    // ctx.drawImage(img, 0, 0);
+
+
+
+});
+
+
+function editPixels(imgData, img, blur) {
+
+    const paso = blur ? blur : 10;
+    for (let f = 0; f < img.height; f += paso) {
         // console.log(i)
 
-        for (let c = 0; c < img.height; c += paso) {
+        for (let c = 0; c < img.width; c += paso) {
 
             try {
                 let media_color = getMediaColor({ imagen: imageData, fila: f, columna: c, spread: paso });
@@ -62,7 +90,7 @@ function editPixels(imgData) {
             } catch (e) {
                 // console.log(e)
                 // console.log(e.stack)
-                debugger
+                //debugger
             }
             // paintPixel({ imagen: imgData, posicion: f * img.width + c, color: { r: 255, g: 0, b: 0 } })
 
@@ -92,7 +120,7 @@ function getMediaColor({ imagen, fila, columna, spread }) {
 
     }
     if (colors.length === 0) {
-        debugger
+        // debugger
         throw new Error("No hay colores")
     }
 
@@ -118,7 +146,7 @@ function getMediaColor({ imagen, fila, columna, spread }) {
         a: Math.trunc(suma.a / colors.length),
     }
     if (Number.isNaN(media.r)) {
-        debugger
+        //debugger
         console.trace();
         throw new Error('No hay media')
     }
@@ -198,6 +226,7 @@ function convert_8_bits(n) {
     // let r = 100;
     let color_8bits = Math.trunc(6 * n / 256)
     let color = 256 * color_8bits / 6;
+    return n;
     return color;
 }
 
