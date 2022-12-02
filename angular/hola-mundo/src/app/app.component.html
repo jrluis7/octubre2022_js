@@ -1,0 +1,18 @@
+<h1 class="big"> Hola mundo Angular </h1>
+<h2> {{ title }} </h2>
+<h2> Curso de {{ curso }} </h2>
+
+<h2 (mousemove)="mueve($event)">
+  Contador: {{ contador }}
+</h2>
+
+<h3> Asteriscos: {{asteriscos}} </h3>
+
+
+
+<!-- EVENTO lo gestiona Angular -->
+<button (click)="crece()"> Crecer </button>
+<button (click)="decrece()"> Decrecer </button>
+
+<button (click)="autoCrece()"> AutoCrece </button>
+<button (click)="stop()"> Stop </button>

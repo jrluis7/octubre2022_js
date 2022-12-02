@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.gridCuadros {
+    padding: 30px;
+    min-height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    background-color: lightgoldenrodyellow;
+}
+
+
+.cuadrado {
+    height: 100px;
+    width: 100px;
+    background-color: lightgreen;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.premium {
+    background-color: coral;
+}
+
+#drop {
+    height: 300px;
+    margin-top: 50px;
+    background-color: lightblue;
+}
+
+.selected_drag {
+    animation: animation_selected 1s infinite;
+}
+
+@keyframes animation_selected {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

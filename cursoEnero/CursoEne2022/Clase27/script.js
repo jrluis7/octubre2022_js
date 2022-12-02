@@ -18,59 +18,51 @@
 
 
 let reconigtion = new webkitSpeechRecognition();
-console.log( reconigtion );
+console.log(reconigtion);
 
 reconigtion.continuous = true;
 reconigtion.lang = "es-ES";
 
 $("#start").on({
-    click:function(){
+    click: function () {
         // Empezar a reconocer la voz
         reconigtion.start();
     }
 });
 
 $('#stop').on({
-    click:function(){
+    click: function () {
         reconigtion.abort();
     }
 });
 
 
-reconigtion.onresult = ( evento )=>{
+reconigtion.onresult = (evento) => {
 
     // evento.results
-    console.log( evento.results )
+    console.log(evento.results)
     // cojo la última línea
-    console.log( evento.results[evento.results.length - 1] )
-    console.log( evento.results[evento.results.length - 1][0].transcript );
+    console.log(evento.results[evento.results.length - 1])
+    console.log(evento.results[evento.results.length - 1][0].transcript);
 
-    let texto = evento.results[evento.results.length - 1][0].transcript ;
-    let confianza = evento.results[evento.results.length - 1][0].confidence ;
-    pintaTexto( texto ,confianza )
-    voz( texto )
+    let texto = evento.results[evento.results.length - 1][0].transcript;
+    let confianza = evento.results[evento.results.length - 1][0].confidence;
+    pintaTexto(texto, confianza)
+    voz(texto)
 
 }
-
-
-
-
-
-
-function pintaTexto( texto, confianza ){
-    $( '#texto' ).append( texto );
-    $( '#confianza' ).text( confianza );
+function pintaTexto(texto, confianza) {
+    $('#texto').append(texto);
+    $('#confianza').text(confianza);
 }
 
-
-
-function voz( texto ){
+function voz(texto) {
 
     const speech = new SpeechSynthesisUtterance();
     speech.text = texto;
     speech.volume = 12;
-    speech.rate =100;
-    speech.pitch = 10;
-    console.log( speech )
-    window.speechSynthesis.speak( speech )
+    speech.rate = 50;
+    speech.pitch = 18;
+    console.log(speech)
+    window.speechSynthesis.speak(speech)
 }
