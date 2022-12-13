@@ -1,0 +1,19 @@
+nav {
+    display: flex;
+    height: 70px;
+    background-color: #1d1d1d;
+    align-items: stretch;
+
+    .nav-item {
+        flex-grow: 1;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &.active {
+            color: #1d1d1d;
+            background-color: #f1f1f1;
+        }
+    }
+}

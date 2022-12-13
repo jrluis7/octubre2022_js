@@ -1,0 +1,13 @@
+<!-- 
+    NG CLASS 
+        - Añade una clase en función de una condición
+        [ngClass]="{ 'nombreClase' : condicion  }"
+-->
+
+<h1 [ngClass]="{ 'selected' : elementoSeleccionado }" [ngStyle]="estilo"> Home </h1>
+
+<p>
+    {{ 9 | formattime }}
+</p>
+<button (click)="select()"> Seleccionar </button>
+<button (click)="aumenta()"> Aumenta </button>

@@ -56,6 +56,9 @@ export class AppComponent {
   }
 
 
+  isUrlContador(){
+    
+  }
 
 
 }

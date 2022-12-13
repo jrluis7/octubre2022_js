@@ -1,0 +1,26 @@
+<h1>Contador</h1>
+<h3> {{ contador }} </h3>
+<!-- DIRECTIVAS -->
+<!-- Mostrar el contenedor si se cumple la condición -->
+<!-- <div class="par" *ngIf="contador % 2 === 0">
+    PAR
+</div> -->
+<div class="par" *ngIf="isPar()&&contador!==0">
+    PAR
+</div>
+<div class="impar" *ngIf="contador % 2 !== 0">
+    IMPAR
+</div>
+<div class="cero" *ngIf="contador === 0">
+    ES CERO
+</div>
+
+<div class="gridButtons">
+    <button (click)="decrece()"> - </button>
+    <button (click)="crece()"> + </button>
+</div>
+
+<div>
+    Edad: {{ getEdad() }}
+    Edad: {{ edad }}
+</div>

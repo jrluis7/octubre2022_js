@@ -1,0 +1,25 @@
+<p>resize-image works!</p>
+<div>
+    <!-- <img src="https://picsum.photos/id/237/200/300" alt=""> -->
+    <!-- <img src="{{url_image}}" alt=""> -->
+
+
+    <img [src]="url_image + 'id/'+ id + '/' +  ancho + '/' + alto" alt="" (error)="errorCarga()">
+</div>
+<div>
+    <div>
+        Ancho:
+        <button (click)="menosAncho()"> - </button>
+        <button (click)="masAncho()"> + </button>
+    </div>
+    <div>
+        Alto:
+        <button> - </button>
+        <button> + </button>
+    </div>
+    <div>
+        <button (click)="getRandom()"> Image Random </button>
+    </div>
+    <div *ngIf="ancho === 150"> Limite inferior del ancho </div>
+
+</div>
