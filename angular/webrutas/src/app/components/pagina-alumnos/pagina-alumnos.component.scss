@@ -1,0 +1,21 @@
+.grid {
+
+
+    .alumno {
+        border: 1px solid black;
+        margin: 2px;
+        padding: 7px;
+
+        &.sobresaliente {
+            background-color: lightgreen;
+        }
+
+        &.aprobado {
+            background-color: lightgoldenrodyellow;
+        }
+
+        &.suspenso {
+            background-color: lightcoral;
+        }
+    }
+}

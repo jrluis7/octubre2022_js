@@ -1,0 +1,28 @@
+<h1> Alumnos </h1>
+<!-- 
+
+    Ligando el input con la variable
+
+ -->
+<input type="text" [(ngModel)]="entradaNombre">
+- {{ entradaNombre }}
+<button (click)="add()"> Añadir </button>
+
+
+<div class="grid">
+    <!-- 
+        Ng FOR únicamente repite una estructuta HTML el número de veces que diga un array y con cada uno de los valores 
+    -->
+    <ng-container *ngFor="let cadaAlumno of alumnos; let i = index">
+        <div class="alumno"
+            [ngClass]="{'sobresaliente':cadaAlumno.nota >= 9 , 'aprobado': cadaAlumno.nota >=5 && cadaAlumno.nota < 9, 'suspenso':cadaAlumno.nota < 5 }">
+            {{i}}.{{ cadaAlumno.nombre }} - {{ cadaAlumno.nota }} {{ cadaAlumno?.dni }}
+            <span *ngIf="cadaAlumno.nota>=5">✅</span>
+            <span *ngIf="cadaAlumno.nota<5">❌</span>
+            <button *ngIf="cadaAlumno.nota<5" (click)="aprobar(cadaAlumno )"> Aprobar </button>
+        </div>
+    </ng-container>
+    <!-- <div class="alumno">2</div>
+    <div class="alumno">3</div>
+    <div class="alumno">4</div> -->
+</div>

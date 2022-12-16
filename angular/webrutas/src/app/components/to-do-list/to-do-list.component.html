@@ -1,0 +1,32 @@
+<div class="container">
+    <h2>To Do List</h2>
+    <hr>
+    <div>
+        <input type="text" [(ngModel)]="entradaTarea">
+        <button (click)="add_task()"> Add </button>
+    </div>
+
+    <h3> To Do </h3>
+    <div class="to_do">
+        <div class="tarea" *ngFor="let tarea of get_to_do()">
+            <div class="text"> {{ tarea.nombre }}</div>
+            <div class="btns">
+                <span (click)="complete( tarea )"> ✅ </span>
+                <span> ❌ </span>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <h3> Done </h3>
+    <div class="done">
+        <div class="tarea" *ngFor="let tarea of get_done()">
+            <div class="text"> {{ tarea.nombre }}</div>
+            <div class="btns">
+                <span (click)="uncomplete( tarea )"> 🔝 </span>
+                <span> ❌ </span>
+            </div>
+        </div>
+
+        <!-- <app-tarea [tarea]="cadaTarea"></app-tarea> -->
+    </div>
+</div>

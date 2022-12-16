@@ -1,0 +1,10 @@
+<h1>Personajes</h1>
+
+<div>
+    <div *ngFor="let personaje of characters">
+        {{personaje.name}}
+    </div>
+</div>
+<div>
+    <button (click)="next()">Next</button>
+</div>

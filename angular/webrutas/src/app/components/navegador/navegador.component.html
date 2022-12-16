@@ -5,5 +5,10 @@
         [routerLink]="['/image']"> Image </a>
     <a class="nav-item" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active"
         [routerLink]="['/servicios' ]"> Servicios</a>
-    <a class="nav-item"> Contacto </a>
+    <a class="nav-item" [routerLink]="['/alumnos']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
+        Alumnos </a>
+
+    <a class="nav-item" [routerLink]="['rick-morty']"> API Rick y Morty </a>
+
+    <a class="nav-item" [routerLink]="['to-do-list']"> To Do List </a>
 </nav>

@@ -4,7 +4,7 @@
         [ngClass]="{ 'nombreClase' : condicion  }"
 -->
 
-<h1 [ngClass]="{ 'selected' : elementoSeleccionado }" [ngStyle]="estilo"> Home </h1>
+<h1 [ngClass]="{ 'selected' : elementoSeleccionado, 'otraClase':!elementoSeleccionado }" [ngStyle]="estilo"> Home </h1>
 
 <p>
     {{ 9 | formattime }}
