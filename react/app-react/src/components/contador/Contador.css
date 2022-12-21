@@ -1,0 +1,18 @@
+h1 {
+    color: coral;
+}
+
+.par {
+    background-color: lightblue;
+    padding: 10px;
+}
+
+.impar {
+    background-color: lightgreen;
+    padding: 10px;
+}
+
+.cero {
+    background-color: rgb(230, 144, 238);
+    padding: 10px;
+}
