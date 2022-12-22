@@ -10,6 +10,7 @@ import {
 
 import Contador from './components/contador/Contador';
 import Alumnos from './components/alumnos/Alumnos';
+import ToDoList from './components/todolist/ToDoList';
 
 
 function App() {
@@ -39,11 +40,13 @@ function App() {
           <Link to="/"> Home  </Link>
           <Link to="/alumnos"> Alumnos  </Link>
           <Link to="/contador" > Contador  </Link>
+          <Link to="/todolist" > To Do List  </Link>
         </nav>
         <Routes>
           <Route path='' element={<Home></Home>} > </Route>
           <Route path='contador' element={<Contador></Contador>} > </Route>
           <Route path='alumnos' element={<Alumnos></Alumnos>} > </Route>
+          <Route path='todolist' element={<ToDoList></ToDoList>} > </Route>
         </Routes>
 
       </BrowserRouter>

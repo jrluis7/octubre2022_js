@@ -48,12 +48,19 @@ export default function Alumnos(props) {
     }, [])// Array vacío para sólo ejecutarse al principio
 
 
+    const deleteAlumno = (alumno) => {
+
+    }
+
     const getAlumnos = () => {
 
         const alumnos_filtered = alumnos.filter(cadaAlumno => cadaAlumno.nota >= 5);
 
         return alumnos.map((cadaAlumno, indice) => {
-            return <div className='alumno' key={indice} > {cadaAlumno.nombre} </div>
+            return <div className='alumno' key={indice} >
+                {cadaAlumno.nombre}
+                <span> <button onClick={() => deleteAlumno(cadaAlumno)}> Delete </button> </span>
+            </div>
         })
     }
     const add = () => {
